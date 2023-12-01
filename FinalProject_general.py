@@ -22,7 +22,7 @@ quadcopter = QuadcopterDynamics(g_val, m_val, l_val, K_val, A_x_val, A_y_val, A_
 # [x y z ]
 # [phi theta psi]
 # [m1 m2 m3 m4]
-omega = [0, 0, 0 ,0]
+omega = [100, 100, 100 ,100]
 
 myTimer = time.time()
 print("Start time : ",myTimer)
@@ -44,7 +44,7 @@ while True:
         else:
             step = step+1
             print("Step number : ",step)
-            print("Orientation : ",quadcopter.orientation)
+            quadcopter.dynamicDebugger()
             quadcopter.calculate_A_matrix(phi_val=quadcopter.orientation[0], theta_val=quadcopter.orientation[1])
             quadcopter.calculate_B_matrix(omega=omega, orientation=quadcopter.orientation, angularVelocity=quadcopter.angularVelo, linearVelocity=quadcopter.linearVelo)
             acc = quadcopter.calculate_x_solution()

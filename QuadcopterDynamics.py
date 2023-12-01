@@ -25,8 +25,8 @@ class QuadcopterDynamics:
         self.linearVelo = np.array([0, 0, 0])
         self.angularVelo = np.array([0, 0, 0])
         
-        self.linearAcc = np.array([0, 0, 0])
-        self.angularAcc = np.array([0, 0, 0])
+        self.linearAcc = np.zeros(3,)
+        self.angularAcc = np.zeros(3,)
 
     def calculate_B_matrix(self,omega:list[float], orientation:list[float], angularVelocity:list[float], linearVelocity:list[float])->None:
         omega1_val = omega[0]
@@ -79,7 +79,16 @@ class QuadcopterDynamics:
             
             self.position[i] = self.position[i] + self.linearVelo[i]*self.dt + 0.5*self.linearAcc[i]*self.dt*self.dt
             self.orientation[i] = self.orientation[i] + self.angularVelo[i]*self.dt + 0.5*self.angularAcc[i]*self.dt*self.dt
-            
+    
+    def dynamicDebugger(self):
+        print("Angular prpoties")
+        print("Angular accelaration : ",self.angularAcc.T)
+        print("Angular velocity : ",self.angularVelo)
+        print("Orientation : ",self.orientation)   
+        print("Linear prpoties")
+        print("Linear accelaration : ",self.linearAcc.T)
+        print("Linear velocity : ",self.linearVelo)
+        print("Position : ",self.position) 
         
         
     
