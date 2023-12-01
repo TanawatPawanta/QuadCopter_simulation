@@ -14,7 +14,7 @@ class QuadcopterDynamics:
         self.Iyy_val = Iyy_val
         self.Izz_val = Izz_val
         
-        self.dt
+        self.dt = 0
         
         self.matrixA = np.array([])
         self.matrixB = np.array([])
@@ -40,8 +40,9 @@ class QuadcopterDynamics:
         theta_dot_val = angularVelocity[1]
         psi_dot_val = angularVelocity[2]
         v_x_val = linearVelocity[0]
-        v_y_val = linearVelocity[2]
-        v_z_val = linearVelocity[3]
+        v_y_val = linearVelocity[1]
+        v_z_val = linearVelocity[2]
+        self.matrixB = np.array([])
         self.matrixB = np.array([
             [self.K_val*(np.sin(phi_val)*np.sin(psi_val) + np.cos(phi_val)*np.cos(psi_val)*np.sin(theta_val))*(omega1_val**2 + omega2_val**2 + omega3_val**2 + omega4_val**2) - self.A_x_val*v_x_val],
             [-self.A_y_val*v_y_val - self.K_val*(np.cos(psi_val)*np.sin(phi_val) - np.cos(phi_val)*np.sin(psi_val)*np.sin(theta_val))*(omega1_val**2 + omega2_val**2 + omega3_val**2 + omega4_val**2)],
@@ -52,6 +53,7 @@ class QuadcopterDynamics:
         ])
 
     def calculate_A_matrix(self, phi_val:float, theta_val:float)->None:
+        self.matrixA = np.array([])
         self.matrixA = np.array([
             [self.m_val, 0, 0,               0,                                        0,                                                                            0],
             [0, self.m_val, 0,               0,                                        0,                                                                            0],
@@ -71,12 +73,13 @@ class QuadcopterDynamics:
         self.dt = deltaTime
     
     def updateState(self):
-        self.linearVelo = self.linearVelo + self.linearAcc*self.dt
-        self.angularVelo = self.angularVelo + self.angularAcc*self.dt
-        
-        self.position = self.position + self.linearVelo*self.dt + 0.5*self.linearAcc*self.dt*self.dt
-        self.orientation = self.orientation + self.angularVelo*self.dt + 0.5*self.angularAcc*self.dt*self.dt
-        
+        for i in range(3):
+            self.linearVelo[i] = self.linearVelo[i] + self.linearAcc[i]*self.dt
+            self.angularVelo[i] = self.angularVelo[i] + self.angularAcc[i]*self.dt
+            
+            self.position[i] = self.position[i] + self.linearVelo[i]*self.dt + 0.5*self.linearAcc[i]*self.dt*self.dt
+            self.orientation[i] = self.orientation[i] + self.angularVelo[i]*self.dt + 0.5*self.angularAcc[i]*self.dt*self.dt
+            
         
         
     
