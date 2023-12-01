@@ -149,11 +149,11 @@ class QuadcopterController:
         self.quadcopter_state = state
         self.quadcopter_visualization.draw_quadcopter(*self.quadcopter_state)
 
-deltas = [0, 0, 0, 5, 2, 0]
+# deltas = [0, 0, 0, 5, 2, 0]
 
-quadcopter_visualization = Quadcopter3DVisualization()
-quadcopter_controller = QuadcopterController(quadcopter_visualization)
-while(1):
-    quadcopter_controller.update_quadcopter_and_plot(deltas)
-    # deltas[0] += 0.01
-    time.sleep(0.1)
+# quadcopter_visualization = Quadcopter3DVisualization()
+# quadcopter_controller = QuadcopterController(quadcopter_visualization)
+# while(1):
+#     quadcopter_controller.update_quadcopter_and_plot(deltas)
+#     # deltas[0] += 0.01
+#     time.sleep(0.1)
