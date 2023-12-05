@@ -19,14 +19,18 @@ class QuadcopterDynamics:
         self.matrixA = np.array([])
         self.matrixB = np.array([])
         
-        self.position = np.array([0, 0, 0])
-        self.orientation = np.array([0, 0, 0])
+        self.position = np.array([0, 0, 0]).astype(float)
+        self.orientation = np.array([0, 0, 0]).astype(float)
+        self.position_minus = np.array([0, 0, 0]).astype(float)
+        self.orientation_minus = np.array([0, 0, 0]).astype(float)
         
-        self.linearVelo = np.array([0, 0, 0])
-        self.angularVelo = np.array([0, 0, 0])
+        self.linearVelo = np.array([0, 0, 0]).astype(float)
+        self.angularVelo = np.array([0, 0, 0]).astype(float)
+        self.linearVelo_minus = np.array([0, 0, 0]).astype(float)
+        self.angularVelo_minus = np.array([0, 0, 0]).astype(float)
         
-        self.linearAcc = np.zeros(3,)
-        self.angularAcc = np.zeros(3,)
+        self.linearAcc = np.zeros(3,).astype(float)
+        self.angularAcc = np.zeros(3,).astype(float)
 
     def calculate_B_matrix(self,omega:list[float], orientation:list[float], angularVelocity:list[float], linearVelocity:list[float])->None:
         omega1_val = omega[0]
@@ -71,14 +75,40 @@ class QuadcopterDynamics:
     
     def set_dt(self, deltaTime:float)->None:
         self.dt = deltaTime
+        
+    def Rot_zyx(self, phi, theta, psi):
+        R_x = np.array([[1, 0, 0],
+                        [0, np.cos(phi), -np.sin(phi)],
+                        [0, np.sin(phi), np.cos(phi)]
+                        ])
+
+        R_y = np.array([[np.cos(theta), 0, np.sin(theta)],
+                        [0, 1, 0],
+                        [-np.sin(theta), 0, np.cos(theta)]
+                        ])
+
+        R_z = np.array([[np.cos(psi), -np.sin(psi), 0],
+                        [np.sin(psi), np.cos(psi), 0],
+                        [0, 0, 1]
+                        ])
+
+        R = np.dot(R_z, np.dot(R_y, R_x))
+        return R
     
     def updateState(self):
+        print("Updating...")
         for i in range(3):
-            self.linearVelo[i] = self.linearVelo[i] + self.linearAcc[i]*self.dt
-            self.angularVelo[i] = self.angularVelo[i] + self.angularAcc[i]*self.dt
+            self.linearVelo[i] = self.linearVelo_minus[i] + (self.linearAcc[i]*self.dt)
+            self.angularVelo[i] = float(self.angularVelo_minus[i] + self.angularAcc[i]*self.dt)
+
+            self.position[i] = self.position_minus[i] + self.linearVelo[i]*self.dt + 0.5*self.linearAcc[i]*self.dt*self.dt
+            self.orientation[i] = self.orientation_minus[i] + self.angularVelo[i]*self.dt + 0.5*self.angularAcc[i]*self.dt*self.dt
             
-            self.position[i] = self.position[i] + self.linearVelo[i]*self.dt + 0.5*self.linearAcc[i]*self.dt*self.dt
-            self.orientation[i] = self.orientation[i] + self.angularVelo[i]*self.dt + 0.5*self.angularAcc[i]*self.dt*self.dt
+            self.linearVelo_minus[i] = self.linearVelo[i]
+            self.angularVelo_minus[i] = self.angularVelo[i]
+            self.position_minus[i] = self.position[i]
+            self.orientation_minus[i] = self.orientation[i]
+
     
     def dynamicDebugger(self):
         print("Angular prpoties")

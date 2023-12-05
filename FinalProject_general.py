@@ -2,18 +2,19 @@ from QuadcopterDynamics import QuadcopterDynamics
 from simtest import Quadcopter3DVisualization, QuadcopterController
 import time
 import numpy as np
+import math
 
-g_val = 9.81
-m_val = 1.0
-l_val = 0.5
-K_val = 0.01
-A_x_val = 0.02
-A_y_val = 0.03
-A_z_val = 0.04
-b_val = 0.05
-Ixx_val = 0.1
-Iyy_val = 0.2
-Izz_val = 0.3
+g_val = 9.81 
+m_val = 0.468
+l_val = 0.225
+K_val = 2.980*1e-6
+A_x_val = 0.0
+A_y_val = 0.0
+A_z_val = 0.0
+b_val = 1.14*1e-7
+Ixx_val = 4.856*1e-3
+Iyy_val = 4.856*1e-3
+Izz_val = 8.801*1e-3
 
 # Create an instance of QuadcopterDynamics
 quadcopter = QuadcopterDynamics(g_val, m_val, l_val, K_val, A_x_val, A_y_val, A_z_val, b_val, Ixx_val, Iyy_val, Izz_val)
@@ -22,8 +23,12 @@ quadcopter = QuadcopterDynamics(g_val, m_val, l_val, K_val, A_x_val, A_y_val, A_
 # [x y z ]
 # [phi theta psi]
 # [m1 m2 m3 m4]
-omega = [100, 100, 100 ,100]
-
+om = 1.075
+spd = om*math.sqrt(1/K_val)
+print("spd : ",spd)
+dspd = 0.05*spd
+omega = [spd-(0.5*dspd), spd+(0.5*dspd), spd-(0.5*dspd), spd+(0.5*dspd)]
+print("omega", omega)
 myTimer = time.time()
 print("Start time : ",myTimer)
 dt = 0.01
@@ -43,10 +48,10 @@ while True:
             break
         else:
             step = step+1
-            print("Step number : ",step)
-            quadcopter.dynamicDebugger()
+            print("Step number : ",step)     
             quadcopter.calculate_A_matrix(phi_val=quadcopter.orientation[0], theta_val=quadcopter.orientation[1])
             quadcopter.calculate_B_matrix(omega=omega, orientation=quadcopter.orientation, angularVelocity=quadcopter.angularVelo, linearVelocity=quadcopter.linearVelo)
             acc = quadcopter.calculate_x_solution()
-            quadcopter.updateState()           
+            quadcopter.updateState()          
+            quadcopter.dynamicDebugger()
         timeStamp = time.time() + dt    
