@@ -31,7 +31,18 @@ class QuadcopterDynamics:
         
         self.linearAcc = np.zeros(3,).astype(float)
         self.angularAcc = np.zeros(3,).astype(float)
-
+        
+    def calculate_A_matrix(self, phi_val:float, theta_val:float)->None:
+        self.matrixA = np.array([])
+        self.matrixA = np.array([
+            [self.m_val, 0, 0,               0,                                        0,                                                                            0],
+            [0, self.m_val, 0,               0,                                        0,                                                                            0],
+            [0, 0, self.m_val,               0,                                        0,                                                                            0],
+            [0, 0, 0,             self.Ixx_val,                                        0,                                                              -self.Ixx_val*np.sin(theta_val)],
+            [0, 0, 0,               0,    self.Iyy_val - self.Iyy_val*np.sin(phi_val)**2 + self.Izz_val*np.sin(phi_val)**2,                                     np.cos(phi_val)*np.cos(theta_val)*np.sin(phi_val)*(self.Iyy_val - self.Izz_val)],
+            [0, 0, 0, -self.Ixx_val*np.sin(theta_val), np.cos(phi_val)*np.cos(theta_val)*np.sin(phi_val)*(self.Iyy_val - self.Izz_val), self.Izz_val*np.cos(phi_val)**2*np.cos(theta_val)**2 + self.Iyy_val*np.cos(theta_val)**2*np.sin(phi_val)**2 + self.Ixx_val*np.sin(theta_val)**2]
+        ])
+        
     def calculate_B_matrix(self,omega:list[float], orientation:list[float], angularVelocity:list[float], linearVelocity:list[float])->None:
         omega1_val = omega[0]
         omega2_val = omega[1]
@@ -56,16 +67,6 @@ class QuadcopterDynamics:
             [self.b_val*omega1_val**2 - self.b_val*omega2_val**2 + self.b_val*omega3_val**2 - self.b_val*omega4_val**2 + self.Ixx_val*phi_dot_val*theta_dot_val*np.cos(theta_val) + self.Iyy_val*phi_dot_val*theta_dot_val*np.cos(theta_val) - self.Izz_val*phi_dot_val*theta_dot_val*np.cos(theta_val) - self.Ixx_val*psi_dot_val*theta_dot_val*np.sin(2*theta_val) + self.Iyy_val*psi_dot_val*theta_dot_val*np.sin(2*theta_val) + self.Iyy_val*theta_dot_val**2*np.cos(phi_val)*np.sin(phi_val)*np.sin(theta_val) - self.Izz_val*theta_dot_val**2*np.cos(phi_val)*np.sin(phi_val)*np.sin(theta_val) - 2*self.Iyy_val*phi_dot_val*theta_dot_val*np.cos(phi_val)**2*np.cos(theta_val) + 2*self.Izz_val*phi_dot_val*theta_dot_val*np.cos(phi_val)**2*np.cos(theta_val) - 2*self.Iyy_val*phi_dot_val*psi_dot_val*np.cos(phi_val)*np.cos(theta_val)**2*np.sin(phi_val) + 2*self.Izz_val*phi_dot_val*psi_dot_val*np.cos(phi_val)*np.cos(theta_val)**2*np.sin(phi_val) - 2*self.Iyy_val*psi_dot_val*theta_dot_val*np.cos(phi_val)**2*np.cos(theta_val)*np.sin(theta_val) + 2*self.Izz_val*psi_dot_val*theta_dot_val*np.cos(phi_val)**2*np.cos(theta_val)*np.sin(theta_val)]
         ])
 
-    def calculate_A_matrix(self, phi_val:float, theta_val:float)->None:
-        self.matrixA = np.array([])
-        self.matrixA = np.array([
-            [self.m_val, 0, 0,               0,                                        0,                                                                            0],
-            [0, self.m_val, 0,               0,                                        0,                                                                            0],
-            [0, 0, self.m_val,               0,                                        0,                                                                            0],
-            [0, 0, 0,             self.Ixx_val,                                        0,                                                              -self.Ixx_val*np.sin(theta_val)],
-            [0, 0, 0,               0,    self.Iyy_val - self.Iyy_val*np.sin(phi_val)**2 + self.Izz_val*np.sin(phi_val)**2,                                     np.cos(phi_val)*np.cos(theta_val)*np.sin(phi_val)*(self.Iyy_val - self.Izz_val)],
-            [0, 0, 0, -self.Ixx_val*np.sin(theta_val), np.cos(phi_val)*np.cos(theta_val)*np.sin(phi_val)*(self.Iyy_val - self.Izz_val), self.Izz_val*np.cos(phi_val)**2*np.cos(theta_val)**2 + self.Iyy_val*np.cos(theta_val)**2*np.sin(phi_val)**2 + self.Ixx_val*np.sin(theta_val)**2]
-        ])
 
     def calculate_x_solution(self):
         x = np.linalg.solve(self.matrixA, self.matrixB)
@@ -97,18 +98,22 @@ class QuadcopterDynamics:
     
     def updateState(self):
         print("Updating...")
+        deltasPos = np.zeros(3,)
+        deltasOrien = np.zeros(3,)
         for i in range(3):
+            # update current state
             self.linearVelo[i] = self.linearVelo_minus[i] + (self.linearAcc[i]*self.dt)
-            self.angularVelo[i] = float(self.angularVelo_minus[i] + self.angularAcc[i]*self.dt)
-
+            self.angularVelo[i] = self.angularVelo_minus[i] + self.angularAcc[i]*self.dt
             self.position[i] = self.position_minus[i] + self.linearVelo[i]*self.dt + 0.5*self.linearAcc[i]*self.dt*self.dt
             self.orientation[i] = self.orientation_minus[i] + self.angularVelo[i]*self.dt + 0.5*self.angularAcc[i]*self.dt*self.dt
-            
+            deltasPos[i] = self.linearVelo[i]*self.dt + 0.5*self.linearAcc[i]*self.dt*self.dt
+            deltasOrien[i] = self.angularVelo[i]*self.dt + 0.5*self.angularAcc[i]*self.dt*self.dt
+            # update n-1 state
             self.linearVelo_minus[i] = self.linearVelo[i]
             self.angularVelo_minus[i] = self.angularVelo[i]
             self.position_minus[i] = self.position[i]
             self.orientation_minus[i] = self.orientation[i]
-
+        return np.concatenate((deltasOrien,deltasPos),axis=0)
     
     def dynamicDebugger(self):
         print("Angular prpoties")
