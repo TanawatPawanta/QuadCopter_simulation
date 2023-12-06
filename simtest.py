@@ -131,29 +131,32 @@ class QuadcopterController:
         self.quadcopter_visualization = quadcopter_visualization
         self.quadcopter_state = [0, 0, 0, 0, 0, 0]
 
-    # def update_quadcopter_and_plot(self):
-
-    #     # Update quadcopter state
-    #     self.quadcopter_state = [
-    #         self.quadcopter_state[0] + deltas[0],
-    #         self.quadcopter_state[1] + deltas[1],
-    #         self.quadcopter_state[2] + deltas[2],
-    #         self.quadcopter_state[3] + deltas[3],
-    #         self.quadcopter_state[4] + deltas[4],
-    #         self.quadcopter_state[5] + deltas[5]
-    #     ]
-
-    #     self.quadcopter_visualization.draw_quadcopter(*self.quadcopter_state)
-    def update_quadcopter_and_plot(self,state:list[float])->None:
+    def update_quadcopter_and_plot(self,deltas):
         # Update quadcopter state
-        self.quadcopter_state = state
-        self.quadcopter_visualization.draw_quadcopter(*self.quadcopter_state)
+        # [yaw roll pitch x y z]
+        self.quadcopter_state = [
+            self.quadcopter_state[0] + deltas[2],
+            self.quadcopter_state[1] + deltas[1],
+            self.quadcopter_state[2] + deltas[0],
+            self.quadcopter_state[3] + deltas[3],
+            self.quadcopter_state[4] + deltas[4],
+            self.quadcopter_state[5] + deltas[5]
+        ]
 
-# deltas = [0, 0, 0, 5, 2, 0]
+        self.quadcopter_visualization.draw_quadcopter(*self.quadcopter_state)
+    
+    # def update_quadcopter_and_plot(self,state:list[float])->None:
+    #     # Update quadcopter state
+    #     # [yaw roll pitch x y z]
+    #     for i in range(6):
+    #         self.quadcopter_state[i] = state[i]
+    #     self.quadcopter_visualization.draw_quadcopter(*self.quadcopter_state)
+
+# deltass = [0, 0, 0, 0, 0, 0]
 
 # quadcopter_visualization = Quadcopter3DVisualization()
 # quadcopter_controller = QuadcopterController(quadcopter_visualization)
 # while(1):
-#     quadcopter_controller.update_quadcopter_and_plot(deltas)
-#     # deltas[0] += 0.01
+#     quadcopter_controller.update_quadcopter_and_plot(deltass)
+#     deltass[1] += 0.1
 #     time.sleep(0.1)
