@@ -3,7 +3,7 @@ import sys
 
 class MotorSpeedSliders:
     def __init__(self):
-
+        self.enter_press = False
         pygame.init()
 
         # Constants
@@ -83,9 +83,21 @@ class MotorSpeedSliders:
             new_speed = min(max(new_speed, 0), self.rpm_max)
             self.user_input['text'] = ' '
             print("Entered Speed:", new_speed)
-            for i in range(4):
-                self.sliders[i].centerx = int((new_speed / self.rpm_max) * self.slider_range + 20)
-            print("Updated Slider Positions:", [slider.centerx for slider in self.sliders])
+            
+            # Set all motor speeds to 0 if entered speed is 0
+            if new_speed == 0:
+                new_speed = 14
+                for i in range(4):
+                    self.sliders[i].centerx = new_speed
+                    self.speeds[i] = 0
+            else:
+                for i in range(4):
+                    self.sliders[i].centerx = int((new_speed / self.rpm_max) * self.slider_range + 20) - 5
+                    self.speeds[i] = new_speed
+
+            # print("Updated Slider Positions:", [slider.centerx for slider in self.sliders])
+            # print("Updated Speeds:", self.speeds)
+
         except ValueError:
             pass
         self.user_input['active'] = False
@@ -93,6 +105,7 @@ class MotorSpeedSliders:
     def run(self):
         while self.running:
             self.screen.fill(self.WHITE)
+            print("Enter status : ",self.enter_press)
 
             # Event handling
             for event in pygame.event.get():
@@ -121,23 +134,25 @@ class MotorSpeedSliders:
                         if event.type == pygame.MOUSEBUTTONUP and self.button['rect'].collidepoint(event.pos):
                             if self.user_input['text']:
                                 self.handle_enter_key()
+                                self.enter_press = True
                             else:
                                 self.user_input['text'] = str(self.rpm_min)  # Default to rpm_min if the input is empty
                 elif event.type == pygame.KEYDOWN:
                     if self.user_input['active']:
                         if event.key == pygame.K_RETURN or event.key == pygame.K_KP_ENTER:
                             self.handle_enter_key()
+                            self.enter_press = True
                         elif event.key == pygame.K_BACKSPACE:
                             self.user_input['text'] = self.user_input['text'][:-1]
                         elif event.unicode.isnumeric():
                             self.user_input['text'] += event.unicode
 
             # Update speeds
-            speeds = [(slider.centerx - 20 * self.ui_scale) / self.slider_range * self.rpm_max for slider in self.sliders]
+            speeds = [int((slider.centerx - 20 * self.ui_scale) / self.slider_range * self.rpm_max) for slider in self.sliders]
             speeds = [max(min(speed, self.rpm_max), 0) for speed in speeds]
 
-            print("Slider Positions:", [slider.centerx for slider in self.sliders])
-            print("Calculated Speeds:", speeds)
+            # print("Slider Positions:", [slider.centerx for slider in self.sliders])
+            # print("Calculated Speeds:", speeds)
 
             # Draw sliders
             for i, slider in enumerate(self.sliders):

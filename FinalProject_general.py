@@ -1,5 +1,6 @@
 from QuadcopterDynamics import QuadcopterDynamics
 from simtest import Quadcopter3DVisualization, QuadcopterController
+from SlidebarClass import MotorSpeedSliders
 import time
 import numpy as np
 import math
@@ -20,6 +21,7 @@ Izz_val = 8.801*1e-3
 quadcopter = QuadcopterDynamics(g_val, m_val, l_val, K_val, A_x_val, A_y_val, A_z_val, b_val, Ixx_val, Iyy_val, Izz_val)
 quadcopter_visualization = Quadcopter3DVisualization()
 quadcopter_controller = QuadcopterController(quadcopter_visualization)
+# motor_speed_sliders = MotorSpeedSliders()
 # [x y z ]
 # [phi theta psi]
 # [m1 m2 m3 m4]
@@ -28,9 +30,9 @@ spd = om*math.sqrt(1/K_val)
 print("spd : ",spd)
 dspd = 0.05*spd
 # #spin about z-axis and move +z
-# omega = [spd-(0.5*dspd), spd+(0.5*dspd), spd-(0.5*dspd), spd+(0.5*dspd)]
+omega = [spd-(0.5*dspd), spd+(0.5*dspd), spd-(0.5*dspd), spd+(0.5*dspd)]
 # #spin about x-axis
-omega = [spd, spd-(0.5*dspd), spd, spd]
+# omega = [spd, spd-(0.5*dspd), spd, spd]
 print("omega", omega)
 myTimer = time.time()
 print("Start time : ",myTimer)
@@ -43,9 +45,10 @@ timeStamp = time.time() + dt
 deltas = np.zeros(6,)
 print("timeStamp : ", timeStamp)
 while True:
+    # motor_speed_sliders.run()
     if(time.time()-timeStamp >= 0):
         print("========trick=======")
-        quadcopter_controller.update_quadcopter_and_plot(deltas=deltas)
+        quadcopter_controller.update_quadcopter_and_plot(deltas=deltas*0.1)
         if step < 0:
             print("Start time : ",myTimer)
             print("Stop time : ", time.time())

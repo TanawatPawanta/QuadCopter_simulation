@@ -12,7 +12,7 @@ class Quadcopter3DVisualization:
     def __init__(self):
         # Initialize Pygame and set up the display
         pygame.init()
-        self.display = (1280, 500)
+        self.display = (1280, 1000)
         pygame.display.set_mode(self.display, DOUBLEBUF | OPENGL)
         pygame.display.set_caption("Quadcopter 3D Visualization")
 
