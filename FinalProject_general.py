@@ -18,47 +18,72 @@ Iyy_val = 4.856*1e-3
 Izz_val = 8.801*1e-3
 
 # Create an instance of QuadcopterDynamics
+
+# del motor_speed_sliders
 quadcopter = QuadcopterDynamics(g_val, m_val, l_val, K_val, A_x_val, A_y_val, A_z_val, b_val, Ixx_val, Iyy_val, Izz_val)
-quadcopter_visualization = Quadcopter3DVisualization()
-quadcopter_controller = QuadcopterController(quadcopter_visualization)
-# motor_speed_sliders = MotorSpeedSliders()
+
+
+
 # [x y z ]
 # [phi theta psi]
 # [m1 m2 m3 m4]
 om = 1.075
 spd = om*math.sqrt(1/K_val)
-print("spd : ",spd)
 dspd = 0.05*spd
 # #spin about z-axis and move +z
-omega = [spd-(0.5*dspd), spd+(0.5*dspd), spd-(0.5*dspd), spd+(0.5*dspd)]
+# omega = [spd-(0.5*dspd), spd+(0.5*dspd), spd-(0.5*dspd), spd+(0.5*dspd)]
 # #spin about x-axis
-# omega = [spd, spd-(0.5*dspd), spd, spd]
+# omega = [spd, spd-dspd, spd, spd]
+# #spin about y-axis
+# omega = [spd-dspd, spd, spd, spd]
+omega = [620.6108 , 620.6108, 620.6108-10, 620.6108] 
+
 print("omega", omega)
 myTimer = time.time()
 print("Start time : ",myTimer)
 dt = 0.01
-quadcopter.set_dt(dt)
+# quadcopter.set_dt(dt)
 
-clk = 0
+
 step = 0
 timeStamp = time.time() + dt
 deltas = np.zeros(6,)
-print("timeStamp : ", timeStamp)
+state = "init_state"
 while True:
-    # motor_speed_sliders.run()
+    
     if(time.time()-timeStamp >= 0):
         print("========trick=======")
-        quadcopter_controller.update_quadcopter_and_plot(deltas=deltas*0.1)
-        if step < 0:
+        print("State :",state)
+        # quadcopter visualization
+        if step >= 100:
             print("Start time : ",myTimer)
             print("Stop time : ", time.time())
             break
         else:
-            step = step+1
-            print("Step number : ",step)     
-            quadcopter.calculate_A_matrix(phi_val=quadcopter.orientation[0], theta_val=quadcopter.orientation[1])
-            quadcopter.calculate_B_matrix(omega=omega, orientation=quadcopter.orientation, angularVelocity=quadcopter.angularVelo, linearVelocity=quadcopter.linearVelo)
-            acc = quadcopter.calculate_x_solution()
-            deltas = quadcopter.updateState()          
-            quadcopter.dynamicDebugger()
+            match state:
+                case "init_state":
+                    state = "MotorSpeedSlidersConstruct_state"
+                case "MotorSpeedSlidersConstruct_state":
+                    motor_speed_sliders = MotorSpeedSliders()
+                    state = "input_state"
+                case "input_state":
+                    motor_speed_sliders.run()
+                    if(motor_speed_sliders.enter_press == True):
+                        omega = motor_speed_sliders.get_speed()
+                        motor_speed_sliders.close_window()
+                        state = "VisualizatioConsrtruct_state"
+                case "VisualizatioConsrtruct_state":
+                    del motor_speed_sliders
+                    quadcopter_visualization = Quadcopter3DVisualization()
+                    quadcopter_controller = QuadcopterController(quadcopter_visualization)
+                    state = "simulation_state"
+                case "simulation_state":
+                    quadcopter_controller.update_quadcopter_and_plot(deltas=deltas)
+                    step = step+1
+                    print("Step number : ",step)     
+                    quadcopter.calculate_A_matrix(phi_val=quadcopter.orientation[0], theta_val=quadcopter.orientation[1])
+                    quadcopter.calculate_B_matrix(omega=omega, orientation=quadcopter.orientation, angularVelocity=quadcopter.angularVelo, linearVelocity=quadcopter.linearVelo)
+                    acc = quadcopter.calculate_x_solution()
+                    deltas = quadcopter.updateState()          
+                    quadcopter.dynamicDebugger()              
         timeStamp = time.time() + dt    

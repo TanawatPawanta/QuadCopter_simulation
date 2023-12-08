@@ -97,7 +97,7 @@ class QuadcopterDynamics:
         return R
     
     def updateState(self):
-        print("Updating...")
+        # print("Updating...")
         deltasPos = np.zeros(3,)
         deltasOrien = np.zeros(3,)
         for i in range(3):
@@ -116,14 +116,15 @@ class QuadcopterDynamics:
         return np.concatenate((deltasOrien,deltasPos),axis=0)
     
     def dynamicDebugger(self):
-        print("Angular prpoties")
-        print("Angular accelaration : ",self.angularAcc.T)
-        print("Angular velocity : ",self.angularVelo)
-        print("Orientation : ",self.orientation)   
-        print("Linear prpoties")
+        # print("Linear prpoties")
         print("Linear accelaration : ",self.linearAcc.T)
-        print("Linear velocity : ",self.linearVelo)
-        print("Position : ",self.position) 
-        
+        # print("Linear velocity : ",self.linearVelo)
+        # print("Position : ",self.position) 
+
+        # print("Angular prpoties")
+        print("Angular accelaration : ",self.angularAcc.T)
+        # print("Angular velocity : ",self.angularVelo)
+        # print("Orientation : ",self.orientation)   
+
         
     

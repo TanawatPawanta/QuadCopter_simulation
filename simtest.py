@@ -125,6 +125,8 @@ class Quadcopter3DVisualization:
 
         glPopMatrix()
         pygame.display.flip()
+    def __del__(self):
+        print('Destructor called, Quadcopter3DVisualization deleted.')
 
 class QuadcopterController:
     def __init__(self, quadcopter_visualization):
@@ -136,8 +138,8 @@ class QuadcopterController:
         # [yaw roll pitch x y z]
         self.quadcopter_state = [
             self.quadcopter_state[0] + deltas[2],
-            self.quadcopter_state[1] + deltas[1],
-            self.quadcopter_state[2] + deltas[0],
+            self.quadcopter_state[1] + deltas[0],
+            self.quadcopter_state[2] + deltas[1],
             self.quadcopter_state[3] + deltas[3],
             self.quadcopter_state[4] + deltas[4],
             self.quadcopter_state[5] + deltas[5]
