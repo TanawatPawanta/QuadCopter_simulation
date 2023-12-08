@@ -31,18 +31,18 @@ om = 1.075
 spd = om*math.sqrt(1/K_val)
 dspd = 0.05*spd
 # #spin about z-axis and move +z
-# omega = [spd-(0.5*dspd), spd+(0.5*dspd), spd-(0.5*dspd), spd+(0.5*dspd)]
+omega = [spd-(0.5*dspd), spd+(0.5*dspd), spd-(0.5*dspd), spd+(0.5*dspd)]
 # #spin about x-axis
 # omega = [spd, spd-dspd, spd, spd]
 # #spin about y-axis
 # omega = [spd-dspd, spd, spd, spd]
-omega = [620.6108 , 620.6108, 620.6108-10, 620.6108] 
+# omega = [620.6108 , 620.6108, 620.6108-10, 620.6108] 
 
 print("omega", omega)
 myTimer = time.time()
 print("Start time : ",myTimer)
 dt = 0.01
-# quadcopter.set_dt(dt)
+quadcopter.set_dt(dt)
 
 
 step = 0
@@ -55,7 +55,7 @@ while True:
         print("========trick=======")
         print("State :",state)
         # quadcopter visualization
-        if step >= 100:
+        if step >= 500:
             print("Start time : ",myTimer)
             print("Stop time : ", time.time())
             break
@@ -72,8 +72,9 @@ while True:
                         omega = motor_speed_sliders.get_speed()
                         motor_speed_sliders.close_window()
                         state = "VisualizatioConsrtruct_state"
+                        del motor_speed_sliders
                 case "VisualizatioConsrtruct_state":
-                    del motor_speed_sliders
+                    
                     quadcopter_visualization = Quadcopter3DVisualization()
                     quadcopter_controller = QuadcopterController(quadcopter_visualization)
                     state = "simulation_state"
@@ -84,6 +85,7 @@ while True:
                     quadcopter.calculate_A_matrix(phi_val=quadcopter.orientation[0], theta_val=quadcopter.orientation[1])
                     quadcopter.calculate_B_matrix(omega=omega, orientation=quadcopter.orientation, angularVelocity=quadcopter.angularVelo, linearVelocity=quadcopter.linearVelo)
                     acc = quadcopter.calculate_x_solution()
-                    deltas = quadcopter.updateState()          
+                    deltas = quadcopter.updateState()     
+                    print("Deltas : ",deltas)     
                     quadcopter.dynamicDebugger()              
         timeStamp = time.time() + dt    
