@@ -125,6 +125,8 @@ class Quadcopter3DVisualization:
 
         glPopMatrix()
         pygame.display.flip()
+    def close_wiondow(self):
+        pygame.quit()
     def __del__(self):
         print('Destructor called, Quadcopter3DVisualization deleted.')
 
