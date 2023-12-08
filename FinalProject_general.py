@@ -50,7 +50,6 @@ timeStamp = time.time() + dt
 deltas = np.zeros(6,)
 state = "init_state"
 while True:
-    
     if(time.time()-timeStamp >= 0):
         print("========trick=======")
         print("State :",state)
