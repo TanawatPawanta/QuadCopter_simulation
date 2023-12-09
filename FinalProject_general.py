@@ -1,6 +1,7 @@
+# For test
 from QuadcopterDynamics import QuadcopterDynamics
-from simtest import Quadcopter3DVisualization, QuadcopterController
-from SlidebarClass import MotorSpeedSliders
+from Visualization_v1 import Quadcopter3DVisualization, QuadcopterController
+from Input_GUI import MotorSpeedSliders
 import time
 import numpy as np
 import math
