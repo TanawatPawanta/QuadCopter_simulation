@@ -33,7 +33,7 @@ class MotorSpeedSliders:
 
         # RPM range
         self.rpm_min = 0
-        self.rpm_max = 20000
+        self.rpm_max = 1000
 
         # Sliders
         self.speeds = [0, 0, 0, 0]  # Initial speeds for four motors, all set to 0
