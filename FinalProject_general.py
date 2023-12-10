@@ -1,5 +1,7 @@
 from QuadcopterDynamics import QuadcopterDynamics
 from simtest import Quadcopter3DVisualization, QuadcopterController
+from Visualization_v2 import update_plot
+from pyplot3d.utils import ypr_to_R
 from Input_GUI import MotorSpeedSliders
 import time
 import numpy as np
@@ -52,7 +54,9 @@ print("Start time : ",myTimer)
 dt = 0.01
 quadcopter.set_dt(dt)
 
-
+sim_time = 100
+X = np.zeros((3,sim_time))    #store position
+R = np.zeros((3, 3, sim_time))  #store orientation
 step = 0
 timeStamp = time.time() + dt
 deltas = np.zeros(6,)
@@ -62,7 +66,7 @@ while True:
         print("========trick=======")
         print("State :",state)
         # quadcopter visualization
-        if step >= 500:
+        if step >= sim_time-1:
             print("Start time : ",myTimer)
             print("Stop time : ", time.time())
             break
@@ -75,24 +79,20 @@ while True:
                     state = "input_state"
                 case "input_state":
                     motor_speed_sliders.run()
-                    if(motor_speed_sliders.enter_press == True):
+                    if(motor_speed_sliders.startSim_press == True):
                         omega = motor_speed_sliders.get_speed()
                         motor_speed_sliders.close_window()
-                        state = "VisualizatioConsrtruct_state"
+                        state = "simulation_state"
                         del motor_speed_sliders
-                case "VisualizatioConsrtruct_state":
-                    
-                    quadcopter_visualization = Quadcopter3DVisualization()
-                    quadcopter_controller = QuadcopterController(quadcopter_visualization)
-                    state = "simulation_state"
                 case "simulation_state":
-                    quadcopter_controller.update_quadcopter_and_plot(deltas=deltas)
                     step = step+1
                     print("Step number : ",step)     
                     quadcopter.calculate_A_matrix(phi_val=quadcopter.orientation[0], theta_val=quadcopter.orientation[1])
                     quadcopter.calculate_B_matrix(omega=omega, orientation=quadcopter.orientation, angularVelocity=quadcopter.angularVelo, linearVelocity=quadcopter.linearVelo)
                     acc = quadcopter.calculate_x_solution()
-                    deltas = quadcopter.updateState()     
-                    print("Deltas : ",deltas)     
-                    quadcopter.dynamicDebugger()              
+                    pos = quadcopter.updateState()       
+                    quadcopter.dynamicDebugger()    
+                    X[:,step] = pos[3:6].T 
+                    R[:, :, step] = ypr_to_R(pos[0:3], degrees=True)         
         timeStamp = time.time() + dt    
+        

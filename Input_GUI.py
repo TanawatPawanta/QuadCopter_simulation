@@ -3,7 +3,7 @@ import sys
 
 class MotorSpeedSliders:
     def __init__(self):
-        self.enter_press = False
+        self.startSim_press  = False
         self.speedOut = [0.0, 0.0, 0.0, 0.0]
         pygame.init()
 
@@ -108,10 +108,11 @@ class MotorSpeedSliders:
 
     def handle_start_sim_button(self):
         print("Start Sim Button Clicked")
+        self.startSim_press  = True
 
     def run(self):
         self.screen.fill(self.WHITE)
-        print("Enter status:", self.enter_press)
+        print("Start sim status:", self.startSim_press )
 
         # Event handling
         for event in pygame.event.get():
@@ -129,7 +130,7 @@ class MotorSpeedSliders:
                     self.handle_enter_key()
                 elif self.start_sim_button['rect'].collidepoint(event.pos):
                     self.handle_start_sim_button()
-                    self.enter_press = True
+                    
             elif event.type == pygame.MOUSEBUTTONUP:
                 self.dragging = None
             elif event.type == pygame.MOUSEMOTION:
@@ -149,7 +150,7 @@ class MotorSpeedSliders:
                 if self.user_input['active']:
                     if event.key == pygame.K_RETURN or event.key == pygame.K_KP_ENTER:
                         self.handle_enter_key()
-                        self.enter_press = True
+                        
                     elif event.key == pygame.K_BACKSPACE:
                         self.user_input['text'] = self.user_input['text'][:-1]
                     elif event.unicode.isnumeric():
@@ -199,7 +200,7 @@ class MotorSpeedSliders:
         self.clock.tick(self.FPS)
 
     def close_window(self):
-        self.enter_press = False
+        self.startSim_press  = False
         pygame.quit()
 
     def get_speed(self):

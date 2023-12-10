@@ -106,14 +106,14 @@ class QuadcopterDynamics:
             self.angularVelo[i] = self.angularVelo_minus[i] + self.angularAcc[i]*self.dt
             self.position[i] = self.position_minus[i] + self.linearVelo[i]*self.dt + 0.5*self.linearAcc[i]*self.dt*self.dt
             self.orientation[i] = self.orientation_minus[i] + self.angularVelo[i]*self.dt + 0.5*self.angularAcc[i]*self.dt*self.dt
-            deltasPos[i] = self.linearVelo[i]*self.dt + 0.5*self.linearAcc[i]*self.dt*self.dt
-            deltasOrien[i] = self.angularVelo[i]*self.dt + 0.5*self.angularAcc[i]*self.dt*self.dt
+            # deltasPos[i] = self.linearVelo[i]*self.dt + 0.5*self.linearAcc[i]*self.dt*self.dt
+            # deltasOrien[i] = self.angularVelo[i]*self.dt + 0.5*self.angularAcc[i]*self.dt*self.dt
             # update n-1 state
             self.linearVelo_minus[i] = self.linearVelo[i]
             self.angularVelo_minus[i] = self.angularVelo[i]
             self.position_minus[i] = self.position[i]
             self.orientation_minus[i] = self.orientation[i]
-        return np.concatenate((deltasOrien,deltasPos),axis=0)
+        return np.concatenate((self.orientation,self.position),axis=0)
     
     def dynamicDebugger(self):
         # print("Linear prpoties")
