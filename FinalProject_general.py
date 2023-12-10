@@ -1,6 +1,6 @@
 from QuadcopterDynamics import QuadcopterDynamics
 from simtest import Quadcopter3DVisualization, QuadcopterController
-from SlidebarClass import MotorSpeedSliders
+from Input_GUI import MotorSpeedSliders
 import time
 import numpy as np
 import math
