@@ -28,7 +28,7 @@ The sole purpose of this library is to provide a few customizable 3D shapes so t
 
     # initialize plot
     fig = plt.figure()
-    ax = fig.gca(projection='3d')
+    ax = fig.add_subplot(111, projection='3d')
     
     arm_length = 0.24  # in meters
     uav = Uav(ax, arm_length)

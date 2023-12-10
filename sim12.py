@@ -29,6 +29,9 @@ t_end = 300
 #input xyz
 x = np.zeros((3, steps))
 
+print(type(x))
+print(x.shape)
+
 x[0, :] = np.arange(0, t_end, t_end / steps)            # x
 x[1, :] = np.arange(0, t_end, t_end / steps) * 2        # y
 x[2, :] = np.arange(0, t_end, t_end / steps) * -2       # z
@@ -39,6 +42,11 @@ R = np.zeros((3, 3, steps))
 for i in range(steps):
     ypr = np.array([i*5, 0, 0])                         #yaw pitch roll
     R[:, :, i] = ypr_to_R(ypr, degrees=True)            #convert ypr to Rotation matrix
+
+print(type(ypr))
+print(ypr.shape)
+print(type(R))
+print(R.shape)
 
 ani = animation.FuncAnimation(fig, update_plot, frames=30, fargs=(x, R,))   #make animation
 ani.save('animation.gif', writer='pillow', fps=30)                          #save animation
