@@ -19,6 +19,8 @@ class Quadcopter3DVisualization:
         # Set up the initial perspective
         gluPerspective(45, (self.display[0] / self.display[1]), 0.1, 50.0)
         glTranslatef(0.0, 0.0, -5)
+        glRotatef(-60, 1, 0, 0)
+        glRotatef(45, 0, 0, 1)
 
         # Store quadcopter positions over time
         self.quadcopter_positions = []
