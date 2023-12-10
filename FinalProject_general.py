@@ -6,6 +6,9 @@ from Input_GUI import MotorSpeedSliders
 import time
 import numpy as np
 import math
+from matplotlib import pyplot as plt
+from matplotlib import animation
+from pyplot3d.uav import Uav
 
 # quadcopter parameters
 # gravity
@@ -95,4 +98,12 @@ while True:
                     X[:,step] = pos[3:6].T 
                     R[:, :, step] = ypr_to_R(pos[0:3], degrees=True)         
         timeStamp = time.time() + dt    
-        
+
+fig = plt.figure()                              #init plot
+ax = fig.add_subplot(111, projection='3d')
+
+arm_length = l_val  # in meters
+uav_plot = Uav(ax, arm_length)                  #init uav
+
+ani = animation.FuncAnimation(fig, update_plot, frames=30, fargs=(X, R,))   #make animation
+ani.save('animation.gif', writer='pillow', fps=30)                          #save animation
