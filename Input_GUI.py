@@ -3,7 +3,7 @@ import sys
 
 class MotorSpeedSliders:
     def __init__(self):
-        self.starrSim_press = False
+        self.startSim_press = False
         self.speedOut = [0.0, 0.0, 0.0, 0.0]
         pygame.init()
 
@@ -108,11 +108,11 @@ class MotorSpeedSliders:
 
     def handle_start_sim_button(self):
         print("Start Sim Button Clicked")
-        self.starrSim_press = True
+        self.startSim_press = True
 
     def run(self):
         self.screen.fill(self.WHITE)
-        print("Start Sim status:", self.starrSim_press)
+        print("Start Sim status:", self.startSim_press)
 
         # Event handling
         for event in pygame.event.get():
@@ -200,7 +200,7 @@ class MotorSpeedSliders:
         self.clock.tick(self.FPS)
 
     def close_window(self):
-        self.starrSim_press = False
+        self.startSim_press = False
         pygame.quit()
 
     def get_speed(self):

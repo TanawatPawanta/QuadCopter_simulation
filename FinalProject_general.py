@@ -71,21 +71,24 @@ while True:
             match state:
                 case "init_state":
                     state = "MotorSpeedSlidersConstruct_state"
+                    
                 case "MotorSpeedSlidersConstruct_state":
                     motor_speed_sliders = MotorSpeedSliders()
                     state = "input_state"
+                    
                 case "input_state":
                     motor_speed_sliders.run()
-                    if(motor_speed_sliders.enter_press == True):
+                    if(motor_speed_sliders.startSim_press == True):
                         omega = motor_speed_sliders.get_speed()
                         motor_speed_sliders.close_window()
                         state = "VisualizatioConsrtruct_state"
                         del motor_speed_sliders
+                        
                 case "VisualizatioConsrtruct_state":
-                    
                     quadcopter_visualization = Quadcopter3DVisualization()
                     quadcopter_controller = QuadcopterController(quadcopter_visualization)
                     state = "simulation_state"
+                    
                 case "simulation_state":
                     quadcopter_controller.update_quadcopter_and_plot(deltas=deltas)
                     step = step+1
