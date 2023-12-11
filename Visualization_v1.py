@@ -4,8 +4,6 @@ from OpenGL.GL import *
 from OpenGL.GLUT import *
 from OpenGL.GLU import *
 from math import cos, sin, pi
-import tkinter as tk
-import time
 
 
 class Quadcopter3DVisualization:
@@ -21,9 +19,6 @@ class Quadcopter3DVisualization:
         glTranslatef(0.0, 0.0, -5)
         glRotatef(-60, 1, 0, 0)
         glRotatef(45, 0, 0, 1)
-
-        # Store quadcopter positions over time
-        self.quadcopter_positions = []
 
     def draw_circle(self, radius, segments):
         glBegin(GL_POLYGON)
@@ -127,8 +122,10 @@ class Quadcopter3DVisualization:
 
         glPopMatrix()
         pygame.display.flip()
+    
     def close_wiondow(self):
         pygame.quit()
+        
     def __del__(self):
         print('Destructor called, Quadcopter3DVisualization deleted.')
 
