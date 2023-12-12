@@ -33,7 +33,7 @@
 > - **3D Visualization**
 > >Visualization part about drawing Quadcopter on screen and position update by differential of X, Y, Z, roll, pitch, yaw
 > //Add picture
-> > <img src="https://ibb.co/Cwzmzcb"/>
+> > <img src="https://ibb.co/Cwzmzcb" alt="1" width="100"/>
 > > <img src="https://ibb.co/GdqvMGP"/> 
 > >The main library tool is **Pygame** to build display for show Quadcopter and OpenGL
 # User Guide <a name="userguide"></a>
