@@ -1,5 +1,5 @@
 # Quadcopter Simulation
-> This project aim to visualize a Quadcopter's motion(roll pitch yaw and hover) in 3D space by adjust speed of 4 motors using python. In this project including 3 parts motor's speed adjust window, dynamic calculation and 3D visualization. Thank to https://youtu.be/4hlQ2pf842U?si=a1AfHnj8r89j6BRX for MATLAB script to find Quadcopter's equation of motion.
+> This project aims to visualize a Quadcopter's motion (roll, pitch, yaw, and hover) in 3D space by adjusting the speed of four motors using Python. The project consists of three main parts: motor speed adjustment window, dynamic calculation, and 3D visualization. Special thanks to [this MATLAB script](https://youtu.be/4hlQ2pf842U?si=a1AfHnj8r89j6BRX) for finding the Quadcopter's equation of motion.
 # Table of Contents
 > - [**Installation**](#installation)
 > - [**Component**](#component)
@@ -7,23 +7,39 @@
 > - [**Demos & Result**](#demosnresult)
 > - [**Conclusion**](#conclusion)
 > - [**Reference**](#reference)
-# Installation <a name="installation"></a>
-> - **Pygame**
-> > How to installation Pygame
-> >  1. Open Visual Studio Code
-> >  2. Go to teminal or open terminal
-> >  3. Write the command **pip install pygame** in terminal and enter
-> >  4. Wait until download is done 
-> - **OpenGL**
-> > How to installation OpenGL
-> > 
-> > 
-> - **Numpy**
-> > How to installation Numpy
-> >  1. Open Visual Studio Code
-> >  2. Go to teminal or open terminal
-> >  3. Write the command **pip install numpy** in terminal and enter
-> >  4. Wait until download is done 
+## Installation <a name="installation"></a>
+
+### Pygame
+
+1. Open Visual Studio Code.
+2. Go to the terminal or open a new terminal.
+3. Copy and paste the following command:
+   ```bash
+   pip install pygame
+   ```
+4. Press Enter and wait for the download to complete.
+
+### OpenGL
+
+1. Open Visual Studio Code.
+2. Go to the terminal or open a new terminal.
+3. Copy and paste the following command:
+   ```bash
+   pip install PyOpenGL
+   pip install PyOpenGL_accelerate
+   ```
+4. Press Enter and wait for the download to complete.
+
+### Numpy
+
+1. Open Visual Studio Code.
+2. Go to the terminal or open a new terminal.
+3. Copy and paste the following command:
+   ```bash
+   pip install numpy
+   ```
+4. Press Enter and wait for the download to complete.
+   
 # Component <a name="component"></a>
 > - **Motor Slider**
 > Description
