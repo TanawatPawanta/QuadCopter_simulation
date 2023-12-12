@@ -3,7 +3,7 @@
 # Table of Contents
 > - **Installation**
 > - **Componemt**
-> - [Component](#Component)
+> - [Component](#component)
 > - **User Guide**
 > - **Demos & Result**
 > - **Conclusion**
@@ -21,7 +21,7 @@
 > >  2. Go to teminal or open terminal
 > >  3. Write the command **pip install numpy** in terminal and enter
 > >  4. Wait until download is done 
-# Component <a name="Component"></a>
+# Component <a name="component"></a>
 > - **Motor Slider**
 > Description
 > - **Dynamic Calculation**
