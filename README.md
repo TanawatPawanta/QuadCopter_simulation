@@ -21,7 +21,7 @@ This project aims to visualize a Quadcopter's motion (roll, pitch, yaw, and hove
    ```bash
    pip install pygame
    ```
-5. Press Enter and wait for the download to complete.
+4. Press Enter and wait for the download to complete.
 
 ### OpenGL
 
@@ -32,7 +32,7 @@ This project aims to visualize a Quadcopter's motion (roll, pitch, yaw, and hove
    pip install PyOpenGL
    pip install PyOpenGL_accelerate
    ```
-5. Press Enter and wait for the download to complete.
+4. Press Enter and wait for the download to complete.
 
 ### Numpy
 
@@ -42,7 +42,7 @@ This project aims to visualize a Quadcopter's motion (roll, pitch, yaw, and hove
    ```bash
    pip install numpy
    ```
-5. Press Enter and wait for the download to complete.
+4. Press Enter and wait for the download to complete.
 
 ## Components <a name="components"></a>
 
@@ -75,3 +75,4 @@ This project aims to visualize a Quadcopter's motion (roll, pitch, yaw, and hove
 - [2] Pranav Bhounsule, 2020, Robotics Lec25,26: 3D quadcopter, derivation, simulation, animation (Fall 2020) [Online], Available: [YouTube](https://www.youtube.com/watch?v=4hlq2pf842u) [02/11/23]
 - [3] MATLAB, 2020, Drone Simulation and Control, Part 1: Setting Up the Control Problem [Online], Available: [YouTube](https://www.youtube.com/watch?v=hgcgpuqb67q) [02/11/23]
 - [4] Lebedev, A. (2013). Design and Implementation of a 6DOF Control System for an Autonomous Quadrocopter (Master's thesis). Julius Maximilian University of Würzburg, Faculty of Mathematics and Computer Science, Aerospace Information Technology, Chair of Computer Science VIII, Prof. Dr. Sergio Montenegro.
+- [5] Kanishke Gamagedara (2021). Plotting 3D Objects with Matplotlib. Github. https://github.com/kanishkegb/pyplot-3d
