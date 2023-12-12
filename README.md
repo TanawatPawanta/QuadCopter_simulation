@@ -22,7 +22,11 @@ This project aims to visualize a Quadcopter's motion (roll, pitch, yaw, and hove
 
 ### OpenGL
 
-*Instructions for installing OpenGL go here.*
+1. Open Visual Studio Code.
+2. Go to the terminal or open a new terminal.
+3. Copy and paste the following command: `pip install PyOpenGL
+pip install PyOpenGL_accelerate`.
+4. Press Enter and wait for the download to complete.
 
 ### Numpy
 
