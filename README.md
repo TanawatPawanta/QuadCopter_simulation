@@ -47,11 +47,11 @@
 > - **Dynamic Calculation**
 > >
 > - **3D Visualization**
-> >Visualization part about drawing Quadcopter on screen and position update by differential of X, Y, Z, roll, pitch, yaw
+> >The visualization part involves drawing the Quadcopter on the screen and updating its position based on differential values of X, Y, Z, roll, pitch, yaw.
 > //Add picture
 > > ![a](https://ibb.co/GdqvMGP)
 > > <img src="https://ibb.co/GdqvMGP"/> 
-> >The main library tool is **Pygame** to build display for show Quadcopter and OpenGL
+> >The libraries used for this visualization are Pygame for display creation and OpenGL for graphics rendering.
 # User Guide <a name="userguide"></a>
 > Description
 # Demos & Result <a name="demosnresult"></a>
