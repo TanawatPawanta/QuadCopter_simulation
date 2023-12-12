@@ -1,0 +1,60 @@
+# Quadcopter Simulation
+
+This project aims to visualize a Quadcopter's motion (roll, pitch, yaw, and hover) in 3D space by adjusting the speed of four motors using Python. The project consists of three main parts: motor speed adjustment window, dynamic calculation, and 3D visualization. Special thanks to [this MATLAB script](https://youtu.be/4hlQ2pf842U?si=a1AfHnj8r89j6BRX) for finding the Quadcopter's equation of motion.
+
+# Table of Contents
+
+- [**Installation**](#installation)
+- [**Components**](#components)
+- [**User Guide**](#user-guide)
+- [**Demos & Results**](#demos--results)
+- [**Conclusion**](#conclusion)
+- [**References**](#references)
+
+# Installation <a name="installation"></a>
+
+- **Pygame**
+  - Open Visual Studio Code
+  - Go to the terminal or open terminal
+  - Enter the command `pip install pygame` and press Enter
+  - Wait until the download is complete
+
+- **OpenGL**
+  - *Instructions for installation go here*
+
+- **Numpy**
+  - Open Visual Studio Code
+  - Go to the terminal or open terminal
+  - Enter the command `pip install numpy` and press Enter
+  - Wait until the download is complete
+
+# Components <a name="components"></a>
+
+- **Motor Slider**
+  - *Description goes here*
+
+- **Dynamic Calculation**
+  - *Description goes here*
+
+- **3D Visualization**
+  - Visualization part involves drawing the Quadcopter on the screen and updating its position based on differential values of X, Y, Z, roll, pitch, yaw.
+  ![Quadcopter Image](https://ibb.co/GdqvMGP)
+  *The main libraries used are Pygame for building the display and OpenGL.*
+
+# User Guide <a name="user-guide"></a>
+
+*Description goes here*
+
+# Demos & Results <a name="demos--results"></a>
+
+*Description goes here*
+
+# Conclusion <a name="conclusion"></a>
+
+*Description goes here*
+
+# References <a name="references"></a>
+
+- [1] DRONE OMEGA, 2020, What is a Quadcopter Explained Thoroughly [Online], Available: [droneomega.com](https://droneomega.com/what-is-a-quadcopter/) [02/11/23]
+- [2] Pranav Bhounsule, 2020, Robotics Lec25,26: 3D quadcopter, derivation, simulation, animation (Fall 2020) [Online], Available: [YouTube](https://www.youtube.com/watch?v=4hlq2pf842u) [02/11/23]
+- [3] MATLAB, 2020, Drone Simulation and Control, Part 1: Setting Up the Control Problem [Online], Available: [YouTube](https://www.youtube.com/watch?v=hgcgpuqb67q) [02/11/23]
