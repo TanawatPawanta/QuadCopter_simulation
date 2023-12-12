@@ -55,7 +55,7 @@ This project aims to visualize a Quadcopter's motion (roll, pitch, yaw, and hove
 - **3D Visualization**
   - The visualization part involves drawing the Quadcopter on the screen and updating its position based on differential values of X, Y, Z, roll, pitch, yaw.
     - ![Quadcopter Image](https://ibb.co/GdqvMGP)
-    - *The primary libraries employed for this visualization are Pygame for display creation and OpenGL for graphics rendering.*
+    - The libraries used for this visualization are Pygame for display creation and OpenGL for graphics rendering.
 
 ## User Guide <a name="user-guide"></a>
 
