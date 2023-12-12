@@ -11,34 +11,34 @@
 
 ### Pygame
 
-1. Open Visual Studio Code.
-2. Go to the terminal or open a new terminal.
-3. Copy and paste the following command:
-   ```bash
-   pip install pygame
-   ```
-4. Press Enter and wait for the download to complete.
+> 1. Open Visual Studio Code.
+> 2. Go to the terminal or open a new terminal.
+> 3. Copy and paste the following command:
+>    ```bash
+>    pip install pygame
+>    ```
+> 4. Press Enter and wait for the download to complete.
 
 ### OpenGL
 
-1. Open Visual Studio Code.
-2. Go to the terminal or open a new terminal.
-3. Copy and paste the following command:
-   ```bash
-   pip install PyOpenGL
-   pip install PyOpenGL_accelerate
-   ```
-4. Press Enter and wait for the download to complete.
+> 1. Open Visual Studio Code.
+> 2. Go to the terminal or open a new terminal.
+> 3. Copy and paste the following command:
+>    ```bash
+>    pip install PyOpenGL
+>    pip install PyOpenGL_accelerate
+>    ```
+> 4. Press Enter and wait for the download to complete.
 
 ### Numpy
 
-1. Open Visual Studio Code.
-2. Go to the terminal or open a new terminal.
-3. Copy and paste the following command:
-   ```bash
-   pip install numpy
-   ```
-4. Press Enter and wait for the download to complete.
+> 1. Open Visual Studio Code.
+> 2. Go to the terminal or open a new terminal.
+> 3. Copy and paste the following command:
+>    ```bash
+>    pip install numpy
+>    ```
+> 4. Press Enter and wait for the download to complete.
    
 # Component <a name="component"></a>
 > - **Motor Slider**
