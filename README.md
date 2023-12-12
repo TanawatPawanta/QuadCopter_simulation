@@ -58,8 +58,21 @@
 > The libraries used for this visualization are Pygame for display creation and OpenGL for graphics rendering.
 > 
 # User Guide <a name="userguide"></a>
-> Description
-> 
+> 1. Within the Jupyter Notebook file, there are a total of 3 sections, consisting of:
+> > - Section 1: Importing relevant packages into the project.
+> > // Add pic
+> > - Section 2 : The part where various parameters of the quadcopter are adjusted, using SI units. The adjustments should be made before clicking the "Run" button.
+> > // Add pic
+> > - Section 3 : Main loop witch operating at a frequency of 100 Hz.
+> > // Add pic
+
+> 2.  After clicking 'Run All,' the window as shown in the picture will appear.
+> > // Add pic
+> > After adjusting the speed of each motor successfully, press 'Start Sim' to enter the Visualization page.
+> > // Add pic
+
+> 3.  When visualization is complete, Program will shut down automatically.
+
 # Demos & Result <a name="demosnresult"></a>
 ## Examples
 > - Example 1: falling and spin about z-axis
