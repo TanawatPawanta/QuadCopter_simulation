@@ -14,9 +14,9 @@
 > 1. Open Visual Studio Code.
 > 2. Go to the terminal or open a new terminal.
 > 3. Copy and paste the following command:
-   ```bash
-   pip install pygame
-   ```
+>    ```bash
+>    pip install pygame
+>    ```
 > 4. Press Enter and wait for the download to complete.
 
 ### OpenGL
