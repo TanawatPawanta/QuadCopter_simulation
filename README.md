@@ -10,9 +10,13 @@
 # Installation <a name="installation"></a>
 > - **Pygame**
 > > How to installation Pygame
-> >  1. 
+> >  1. Open Visual Studio Code
+> >  2. Go to teminal or open terminal
+> >  3. Write the command **pip install pygame** in terminal and enter
+> >  4. Wait until download is done 
 > - **OpenGL**
 > > How to installation OpenGL
+> > 
 > > 
 > - **Numpy**
 > > How to installation Numpy
@@ -23,6 +27,7 @@
 # Component <a name="component"></a>
 > - **Motor Slider**
 > Description
+> 
 > - **Dynamic Calculation**
 > >
 > - **3D Visualization**
