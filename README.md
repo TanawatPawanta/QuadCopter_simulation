@@ -21,7 +21,7 @@
 > >  2. Go to teminal or open terminal
 > >  3. Write the command **pip install numpy** in terminal and enter
 > >  4. Wait until download is done 
-# Componemt <a name="introduction"></a>
+# Componemt <a name="Componemt"></a>
 > - **Motor Slider**
 > Description
 > - **Dynamic Calculation**
