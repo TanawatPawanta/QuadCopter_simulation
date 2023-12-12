@@ -44,8 +44,26 @@
    
 # Component <a name="component"></a>
 ### Motor Slider
-> Description
-> 
+> In motor slider UI have 4 component
+> > 1. The text shows the speed of all 4 motors in RPM units.
+The lowest value is 0 and the highest is 20,000 rads/s
+> > 2. Slide bar is used only for adjusting the speed of individual motors in order of Left is the least value.  The right is the most valuable.
+> > 3. Text box is used to override the speed of all motors to have the same speed.
+> > 4. Enter button is used to confirm the override of the motor speed after entering the speed into the text box.
+The value will not be changed immediately. You must press the Enter key under the text box or press Enter on your keyboard.
+>
+> ![image](https://github.com/Fzil0n/QuadCopter_simulation/assets/122668877/5093bfe2-c106-442c-87ed-3b0b97bffe91)
+>
+> The speed is adjusted by interacting with the UI in one way or another. The motor speed value is stored through
+An array variable with 4 fields, going from index 0 as the 1st motor to index 3 as the 4th motor.
+>
+> There are 2 main libraries used:
+> > 1. os, which is a library that increases the convenience of cross-program development.
+platform by allowing the program to have access to certain functions so that it can be used with the operating system
+of the computer
+> > 2. Pygame, which is a library for developing games using the Python language as the main language
+> The creator has applied it for user interaction through UI and simulation.
+
 ### Dynamic Calculation
 > >
 ### 3D Visualization
@@ -60,11 +78,13 @@
 # User Guide <a name="userguide"></a>
 > 1. Within the Jupyter Notebook file, there are a total of 3 sections, consisting of:
 > > - Section 1: Importing relevant packages into the project.
-> > // Add pic
+> > ![image2](https://github.com/Fzil0n/QuadCopter_simulation/assets/122668877/7d426e6b-f197-482a-9667-7975c474550e)
+
 > > - Section 2 : The part where various parameters of the quadcopter are adjusted, using SI units. The adjustments should be made before clicking the "Run" button.
-> > // Add pic
+> > ![image3](https://github.com/Fzil0n/QuadCopter_simulation/assets/122668877/02722073-d31d-413b-80ae-3a79f5680797)
+
 > > - Section 3 : Main loop witch operating at a frequency of 100 Hz.
-> > // Add pic
+> > ![image4](https://github.com/Fzil0n/QuadCopter_simulation/assets/122668877/cf3f2d33-8aad-4fad-ae70-2e3f5895b01e)
 
 > 2.  After clicking 'Run All,' the window as shown in the picture will appear.
 > > // Add pic
