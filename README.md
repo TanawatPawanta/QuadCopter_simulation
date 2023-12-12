@@ -62,3 +62,4 @@
 > - [1] DRONE OMEGA, 2020, What is a Quadcopter Explained Thoroughly [Online], Available: https://droneomega.com/what-is-a-quadcopter/ [02/11/23]
 > - [2] Pranav Bhounsule, 2020, Robotics Lec25,26: 3D quadcopter, derivation, simulation, animation (Fall 2020) [Online], Available: https://www.youtube.com/watch?V=4hlq2pf842u [02/11/23]
 > - [3] MATLAB, 2020, Drone Simulation and Control, Part 1: Setting Up the Control Problem [Online], Available: https://www.youtube.com/watch?V=hgcgpuqb67q [02/11/23]
+> - [4] Lebedev, A. (2013). Design and Implementation of a 6DOF Control System for an Autonomous Quadrocopter (Master's thesis). Julius Maximilian University of Würzburg, Faculty of Mathematics and Computer Science, Aerospace Information Technology, Chair of Computer Science VIII, Prof. Dr. Sergio Montenegro.
