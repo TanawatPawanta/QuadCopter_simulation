@@ -3,6 +3,7 @@
 # Table of Contents
 > - **Installation**
 > - **Componemt**
+> - [Componemt](#Componemt)
 > - **User Guide**
 > - **Demos & Result**
 > - **Conclusion**
@@ -10,7 +11,7 @@
 # Installation
 > - **Pygame**
 > > How to installation Pygame
-> > - 1.
+> >  1. 
 > - **OpenGL**
 > > How to installation OpenGL
 > > 
@@ -20,7 +21,7 @@
 > >  2. Go to teminal or open terminal
 > >  3. Write the command **pip install numpy** in terminal and enter
 > >  4. Wait until download is done 
-# Componemt
+# Componemt <a name="introduction"></a>
 > - **Motor Slider**
 > Description
 > - **Dynamic Calculation**
