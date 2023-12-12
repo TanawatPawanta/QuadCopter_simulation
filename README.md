@@ -78,18 +78,28 @@ of the computer
 # User Guide <a name="userguide"></a>
 > 1. Within the Jupyter Notebook file, there are a total of 3 sections, consisting of:
 > > - Section 1: Importing relevant packages into the project.
+```ruby
+from Input_GUI import MotorSpeedSliders
+from QuadcopterDynamics import QuadcopterDynamics
+from Visualization_v1 import Quadcopter3DVisualization, QuadcopterController
+import time
+import numpy as np
+import math
+```
 > > ![image2](https://github.com/Fzil0n/QuadCopter_simulation/assets/122668877/7d426e6b-f197-482a-9667-7975c474550e)
 
 > > - Section 2 : The part where various parameters of the quadcopter are adjusted, using SI units. The adjustments should be made before clicking the "Run" button.
+
 > > ![image3](https://github.com/Fzil0n/QuadCopter_simulation/assets/122668877/02722073-d31d-413b-80ae-3a79f5680797)
 
 > > - Section 3 : Main loop witch operating at a frequency of 100 Hz.
 > > ![image4](https://github.com/Fzil0n/QuadCopter_simulation/assets/122668877/cf3f2d33-8aad-4fad-ae70-2e3f5895b01e)
 
 > 2.  After clicking 'Run All,' the window as shown in the picture will appear.
-> > // Add pic
+> > ![image6](https://github.com/Fzil0n/QuadCopter_simulation/assets/122668877/cbb31498-3bb7-4ba6-9dae-6bdebc348cf7)
+
 > > After adjusting the speed of each motor successfully, press 'Start Sim' to enter the Visualization page.
-> > // Add pic
+> > ![image7](https://github.com/Fzil0n/QuadCopter_simulation/assets/122668877/739a7a89-5762-4d03-bc7b-674a23047a7a)
 
 > 3.  When visualization is complete, Program will shut down automatically.
 
@@ -115,7 +125,7 @@ https://github.com/Fzil0n/QuadCopter_simulation/assets/122668877/8194b8d3-2021-4
 
 > - Dynamic compare with MATLAB
 > > Spin about z-axis and hover
-> > //add pic
+> > ![image5](https://github.com/Fzil0n/QuadCopter_simulation/assets/122668877/289444ca-9cde-4c84-b460-13a33d8b735d)
 
 # Conclusion <a name="conclusion"></a>
 > Simulating the motion of a quadcopter using Python can be done using various libraries available in Python, such as NumPy, Matplotlib, and others, to model the dynamics of the quadcopter and visualize the results graphically. Comparing the results to MATLAB may show some differences depending on the simulation methods and parameters used in each system. However, by choosing appropriate parameters and using accurate simulation methods, you can achieve results that closely match those in MATLAB.
