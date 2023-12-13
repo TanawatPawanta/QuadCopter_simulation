@@ -46,8 +46,8 @@
 ### Motor Slider
 
 > In motor slider UI have 4 component
-> > 1. The text shows the speed of all 4 motors in RPM units.
-The lowest value is 0 and the highest is 20,000 rads/s
+> > 1. The text shows the speed of all 4 motors in rads/s units.
+The lowest value is 0 and the highest is 1,000 rads/s
 > > 2. Slide bar is used only for adjusting the speed of individual motors in order of Left is the least value.  The right is the most valuable.
 > > 3. Text box is used to override the speed of all motors to have the same speed.
 > > 4. Enter button is used to confirm the override of the motor speed after entering the speed into the text box.
