@@ -69,8 +69,7 @@ of the computer
 > 2. Quadcopter Degree of Freedom
 > 3. Quadcopter Dynamics
 > >  - External force and torque
-> >  - Equation of Motion (EOM)
-> > >How to solve equations to find The equations of motion of the quadcopter are therefore applied by the Euler-Lagrange Method, where the Lagrangian (L) is the difference between the kinetic energy (K.E.) and the gravitational potential energy (P.E.).
+> > > From the above, we can write external force and torque in matrix form as follows.
 ```math
 \vec{F}_{ext} = R_{rpy}
 \begin{bmatrix} 0 \\ 0 \\ k\left(\sum_{i=1} ^4 w_i^2 \right) \end{bmatrix} - \begin{bmatrix} A_{x}\dot{x} \\ A_{y}\dot{y} \\ A_{z}\dot{z} \end{bmatrix}
@@ -82,12 +81,27 @@ of the computer
 = \begin{bmatrix} lk\left(w_4^2 - w_2^2\right) \\ lk\left(w_3^2 - w_1^2\right) \\ b\left(w_1^2 + w_2^2 + w_3^2 + w_4^2\right)\end{bmatrix}
 ```
 > > > When $A_{n}$ is damper
-> > > 
+
 ```math
-R_{rpy} = R_{z}\left(\psi\right)R_{y}\left(\theta\right)\thetaR_{x}\left(\phi\right)
+R_{rpy} = R_{z}\left(\psi\right)R_{y}\left(\theta\right)R_{x}\left(\phi\right)
 ```
-> > >
-> 
+> >  - Equation of Motion (EOM)
+> > >How to solve equations to find The equations of motion of the quadcopter are therefore applied by the Euler-Lagrange Method, where the Lagrangian (L) is the difference between the kinetic energy (K.E.) and the gravitational potential energy (P.E.).
+
+```math
+K.E. = \frac{1}{2}m\left(x^2+y^2+z^2\right)+\frac{1}{2}\left(I_{x} w_{bx}^2+I_{y} w_{by}^2+I_{z} w_{bz}^2\right)
+```
+```math
+P.E. = mgz
+```
+```math
+L = K.E. - P.E.
+```
+> > >Then we can find the equation of motion by
+```math
+\frac{\mathrm d}{\mathrm d t}\left(\frac{\mathrm \partial}{\mathrm \partial \dot{q}_{k}}\right) - \frac{\mathrm \partial L}{\mathrm \partial q_{k}} = \Gamma_{k} = \begin{bmatrix} F_{ext} \\ \tau_{ext} \end{bmatrix}
+```
+
 ### 3D Visualization
 > The visualization part involves drawing the Quadcopter on the screen and updating its position based on differential values of X, Y, Z, roll, pitch, yaw.
 > 
