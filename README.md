@@ -151,7 +151,7 @@ motor 4 = thrust_{cmd} + roll_{cmd} - yaw_{cmd}
 = \begin{bmatrix} t_{\phi} \\ t_{\theta} \\ t_{\phi} \end{bmatrix}
 = \begin{bmatrix} lk\left(w_4^2 - w_2^2\right) \\ lk\left(w_3^2 - w_1^2\right) \\ b\left(w_1^2 + w_2^2 + w_3^2 + w_4^2\right)\end{bmatrix}
 ```
-> > > When $A_{n}$ is damper
+> > When $A_{n}$ is damper
 
 ```math
 R_{rpy} = R_{z}\left(\psi\right)R_{y}\left(\theta\right)R_{x}\left(\phi\right)
@@ -169,7 +169,7 @@ P.E. = mgz
 ```math
 L = K.E. - P.E.
 ```
-> > >Then we can find the equation of motion by
+> > Then we can find the equation of motion by
 ```math
 \frac{\mathrm d}{\mathrm d t}\left(\frac{\mathrm \partial}{\mathrm \partial \dot{q}_{k}}\right) - \frac{\mathrm \partial L}{\mathrm \partial q_{k}} = \Gamma_{k} = \begin{bmatrix} F_{ext} \\ \tau_{ext} \end{bmatrix}
 ```
