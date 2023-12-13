@@ -124,7 +124,7 @@ motor 4 = thrust_{cmd} + roll_{cmd} - yaw_{cmd}
 \vec{w_{b}} = \begin{bmatrix}\dot{\phi} \\ 0 \\ 0 \end{bmatrix} + R_{x}^T \left(\phi\right)\begin{bmatrix} 0 \\ \dot{\theta} \\ 0 \end{bmatrix} - R_{x}^T \left(\phi\right)R_{y}^T \left(\theta\right)\begin{bmatrix} 0 \\ 0 \\ \dot{\psi}\end{bmatrix}
 ```
 ```math
-\vec{w_{b}} = \begin{bmatrix}\w_{bx} \\ w_{by} \\ w_{bz} \end{bmatrix} = \begin{bmatrix} 1 & 0 & -S_{\phi} \\ 0 & C_{\phi} & C_{\theta}S_{\phi} \\ 0 & -S_{\phi} & C_{\theta}C_{\phi} \end{bmatrix} \begin{bmatrix} \dot{\phi} \\ \dot{\theta} \\ \dot{\psi} \end{bmatrix}
+\vec{w_{b}} = \begin{bmatrix} w_{bx} \\ w_{by} \\ w_{bz} \end{bmatrix} = \begin{bmatrix} 1 & 0 & -S_{\phi} \\ 0 & C_{\phi} & C_{\theta}S_{\phi} \\ 0 & -S_{\phi} & C_{\theta}C_{\phi} \end{bmatrix} \begin{bmatrix} \dot{\phi} \\ \dot{\theta} \\ \dot{\psi} \end{bmatrix}
 ```
 > > When $R_{n}$ is Rotation matrix
 > > 
@@ -133,7 +133,7 @@ motor 4 = thrust_{cmd} + roll_{cmd} - yaw_{cmd}
 > >  From the above, we can write external force and torque in matrix form as follows.
 ```math
 \vec{F}_{ext} = R_{rpy}
-\begin{bmatrix} 0 \\ 0 \\ k\left(\sum_{i=1}^4 w_i^2 \right) \end{bmatrix} - \begin{bmatrix} A_{x}\dot{x} \\ A_{y}\dot{y} \\ A_{z}\dot{z} \end{bmatrix}
+\begin{bmatrix} 0 \\ 0 \\ k\left( \sum_{i=1}^4 w_i^2 \right) \end{bmatrix} - \begin{bmatrix} A_{x}\dot{x} \\ A_{y}\dot{y} \\ A_{z}\dot{z} \end{bmatrix}
 ```
 
 ```math
