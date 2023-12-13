@@ -65,16 +65,16 @@ of the computer
 > The creator has applied it for user interaction through UI and simulation.
 
 ### Dynamic Calculation
-> 1. Quadcopter Degree of Freedom
-> >  - Reference Frame
-> > > Set the system axis as shown in the picture.
+> **1. Quadcopter Degree of Freedom**
+> >  **- Reference Frame**
+> > Set the system axis as shown in the picture.
 > ![Untitled_Artwork](https://github.com/Fzil0n/QuadCopter_simulation/assets/122668877/6a906f51-e03d-4d19-91c0-10a56d1cf977)
-> > > 
-> > > Set Frame 0 to be the Inertial Frame for reference and Frame Base to be the Frame of the Quadcopter's center of mass (CM).
-> > > The Quadcopter's Pose can be specified with position (x, y, z) and Orientation via Euler angle (Roll (ϕ), Pitch (θ), Yaw (ψ)) or q=(x,y,z). ,ϕ,θ,ψ) The quadcopter speed can be specified as follows: $\dot{q} = \left(\dot{x}, \dot{y}, \dot{z}, \dot{\phi}, \dot{\theta}, \dot{\psi} \right)$
-> > >
-> >  - Translation
-> > > For a quadcopter, the force that occurs is only one force in the $Z\left(F_{z}\right)$ axis. which serves to increase-decrease the Altitude of the Quadcopter. The said force is the sum of the force from all 4 propellers (Thrust) which is directly proportional to the Angular velocity squared.
+> > 
+> >  Set Frame 0 to be the Inertial Frame for reference and Frame Base to be the Frame of the Quadcopter's center of mass (CM).
+> > The Quadcopter's Pose can be specified with position (x, y, z) and Orientation via Euler angle (Roll (ϕ), Pitch (θ), Yaw (ψ)) or q=(x,y,z). ,ϕ,θ,ψ) The quadcopter speed can be specified as follows: $\dot{q} = \left(\dot{x}, \dot{y}, \dot{z}, \dot{\phi}, \dot{\theta}, \dot{\psi} \right)$
+> > 
+> >  **- Translation**
+> >  For a quadcopter, the force that occurs is only one force in the $Z\left(F_{z}\right)$ axis. which serves to increase-decrease the Altitude of the Quadcopter. The said force is the sum of the force from all 4 propellers (Thrust) which is directly proportional to the Angular velocity squared.
 ```math
 thrust \propto w^2
 ```
@@ -84,12 +84,12 @@ thrust = kw^2
 ```math
 F_{z} = k\left(w_{1}^2 + w_{2}^2 + w_{3}^2 + w_{4}^2\right)
 ```
-> > > When k is Lift constant
-> > >
-> > > Because there is only one force in the Z axis, we want to control the direction in the X and Y axes as well. Therefore, Rolling and Pitching are used to help create the force in the Y axis, respectively.
+> >  When k is Lift constant
+> > 
+> > Because there is only one force in the Z axis, we want to control the direction in the X and Y axes as well. Therefore, Rolling and Pitching are used to help create the force in the Y axis, respectively.
 
-> >  - Rotation
-> > > The thing that will allow the quadcopter to be able to roll, pitch, and yaw is from the torque that occurs in each axis.
+> >  **- Rotation**
+> >  The thing that will allow the quadcopter to be able to roll, pitch, and yaw is from the torque that occurs in each axis.
 ```math
 \tau_{x} = lk\left(w_{4}^2 - w_{2}^2\right)
 ```
@@ -99,12 +99,38 @@ F_{z} = k\left(w_{1}^2 + w_{2}^2 + w_{3}^2 + w_{4}^2\right)
 ```math
 \tau_{z} = b\left(w_{1}^2 - w_{2}^2 + w_{3}^2 - w_{4}^2\right)
 ```
-> > > When b is Drag Constant
+> >  When b is Drag Constant
 
-> 3. Quadcopter Degree of Freedom
-> 4. Quadcopter Dynamics
-> >  - External force and torque
-> > > From the above, we can write external force and torque in matrix form as follows.
+> **2. Quadcopter Degree of Freedom**
+> > **- Motor mixing algorithm**
+> > To control the Quadcopter's rolling pitching and Yawing, it can only be controlled through the speed of the individual motors.
+which can be written out as a relationship as follows
+```math
+motor 1 = thrust_{cmd} - pitch_{cmd} + yaw_{cmd}
+```
+```math
+motor 2 = thrust_{cmd} - roll_{cmd} - yaw_{cmd}
+```
+```math
+motor 3 = thrust_{cmd} + pitch_{cmd} + yaw_{cmd}
+```
+```math
+motor 4 = thrust_{cmd} + roll_{cmd} - yaw_{cmd}
+```
+> > 
+> > **- Angular velocity of base frame**
+> > We can find the Angular velocity $\left(\vec{w_{b}}\right)$ of the point CM with respect to Frame 0 from
+```math
+\vec{w_{b}} = \begin{bmatrix}\dot{\phi} \\ 0 \\ 0 \end{bmatrix} + R_{x}^T \left(\phi\right)\begin{bmatrix} 0 \\ \dot{\theta} \\ 0 \end{bmatrix} - R_{x}^T \left(\phi\right)R_{y}^T \left(\theta\right)\begin{bmatrix} 0 \\ 0 \\ \dot{\psi}\end{bmatrix}
+```
+```math
+\vec{w_{b}} = \begin{bmatrix}\w_{bx} \\ w_{by} \\ w_{bz} \end{bmatrix} = \begin{bmatrix} 1 & 0 & -S_{\phi} \\ 0 & C_{\phi} & C_{\theta}S_{\phi} \\ 0 & -S_{\phi} & C_{\theta}C_{\phi} \end{bmatrix} \begin{bmatrix} \dot{\phi} \\ \dot{\theta} \\ \dot{\psi} \end{bmatrix}
+```
+> > When $R_{n}$ is Rotation matrix
+> > 
+> **3. Quadcopter Dynamics**
+> >  **- External force and torque**
+> >  From the above, we can write external force and torque in matrix form as follows.
 ```math
 \vec{F}_{ext} = R_{rpy}
 \begin{bmatrix} 0 \\ 0 \\ k\left(\sum_{i=1} ^4 w_i^2 \right) \end{bmatrix} - \begin{bmatrix} A_{x}\dot{x} \\ A_{y}\dot{y} \\ A_{z}\dot{z} \end{bmatrix}
@@ -120,8 +146,8 @@ F_{z} = k\left(w_{1}^2 + w_{2}^2 + w_{3}^2 + w_{4}^2\right)
 ```math
 R_{rpy} = R_{z}\left(\psi\right)R_{y}\left(\theta\right)R_{x}\left(\phi\right)
 ```
-> >  - Equation of Motion (EOM)
-> > >How to solve equations to find The equations of motion of the quadcopter are therefore applied by the Euler-Lagrange Method, where the Lagrangian (L) is the difference between the kinetic energy (K.E.) and the gravitational potential energy (P.E.).
+> >  **- Equation of Motion (EOM)**
+> > How to solve equations to find The equations of motion of the quadcopter are therefore applied by the Euler-Lagrange Method, where the Lagrangian (L) is the difference between the kinetic energy (K.E.) and the gravitational potential energy (P.E.).
 
 ```math
 K.E. = \frac{1}{2}m\left(x^2+y^2+z^2\right)+\frac{1}{2}\left(I_{x} w_{bx}^2+I_{y} w_{by}^2+I_{z} w_{bz}^2\right)
