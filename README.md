@@ -143,7 +143,10 @@ motor 4 = thrust_{cmd} + roll_{cmd} - yaw_{cmd}
 > >  From the above, we can write external force and torque in matrix form as follows.
 ```math
 \vec{F}_{ext} = R_{rpy}
-\begin{bmatrix} 0 \\ 0 \\ k\left( \sum_{i=1}^4 w_i^2 \right) \end{bmatrix} - \begin{bmatrix} A_{x}\dot{x} \\ A_{y}\dot{y} \\ A_{z}\dot{z} \end{bmatrix}
+\begin{bmatrix} 0 \\ 0 \\ k \displaystyle\sum_{i=1}^4 w_i^2 \end{bmatrix} - \begin{bmatrix} A_{x}\dot{x} \\ A_{y}\dot{y} \\ A_{z}\dot{z} \end{bmatrix}
+```
+```math
+
 ```
 
 ```math
