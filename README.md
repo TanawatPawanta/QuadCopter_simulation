@@ -66,8 +66,43 @@ of the computer
 
 ### Dynamic Calculation
 > 1. Quadcopter Degree of Freedom
-> 2. Quadcopter Degree of Freedom
-> 3. Quadcopter Dynamics
+> >  - Reference Frame
+> > > Set the system axis as shown in the picture.
+> ![Untitled_Artwork](https://github.com/Fzil0n/QuadCopter_simulation/assets/122668877/6a906f51-e03d-4d19-91c0-10a56d1cf977)
+> > > 
+> > > Set Frame 0 to be the Inertial Frame for reference and Frame Base to be the Frame of the Quadcopter's center of mass (CM).
+> > > The Quadcopter's Pose can be specified with position (x, y, z) and Orientation via Euler angle (Roll (ϕ), Pitch (θ), Yaw (ψ)) or q=(x,y,z). ,ϕ,θ,ψ) The quadcopter speed can be specified as follows: $\dot{q} = \left(\dot{x}, \dot{y}, \dot{z}, \dot{\phi}, \dot{\theta}, \dot{\psi} \right)$
+> > >
+> >  - Translation
+> > > For a quadcopter, the force that occurs is only one force in the $Z\left(F_{z}\right)$ axis. which serves to increase-decrease the Altitude of the Quadcopter. The said force is the sum of the force from all 4 propellers (Thrust) which is directly proportional to the Angular velocity squared.
+```math
+thrust \propto w^2
+```
+```math
+thrust = kw^2
+```
+```math
+F_{z} = k\left(w_{1}^2 + w_{2}^2 + w_{3}^2 + w_{4}^2\right)
+```
+> > > When k is Lift constant
+> > >
+> > > Because there is only one force in the Z axis, we want to control the direction in the X and Y axes as well. Therefore, Rolling and Pitching are used to help create the force in the Y axis, respectively.
+
+> >  - Rotation
+> > > The thing that will allow the quadcopter to be able to roll, pitch, and yaw is from the torque that occurs in each axis.
+```math
+\tau_{x} = lk\left(w_{4}^2 - w_{2}^2\right)
+```
+```math
+\tau_{y} = lk\left(w_{3}^2 - w_{1}^2\right)
+```
+```math
+\tau_{z} = b\left(w_{1}^2 - w_{2}^2 + w_{3}^2 - w_{4}^2\right)
+```
+> > > When b is Drag Constant
+
+> 3. Quadcopter Degree of Freedom
+> 4. Quadcopter Dynamics
 > >  - External force and torque
 > > > From the above, we can write external force and torque in matrix form as follows.
 ```math
@@ -114,14 +149,7 @@ L = K.E. - P.E.
 # User Guide <a name="userguide"></a>
 > 1. Within the Jupyter Notebook file, there are a total of 3 sections, consisting of:
 > > - Section 1: Importing relevant packages into the project.
-```ruby
-from Input_GUI import MotorSpeedSliders
-from QuadcopterDynamics import QuadcopterDynamics
-from Visualization_v1 import Quadcopter3DVisualization, QuadcopterController
-import time
-import numpy as np
-import math
-```
+
 > > ![image2](https://github.com/Fzil0n/QuadCopter_simulation/assets/122668877/7d426e6b-f197-482a-9667-7975c474550e)
 
 > > - Section 2 : The part where various parameters of the quadcopter are adjusted, using SI units. The adjustments should be made before clicking the "Run" button.
