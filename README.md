@@ -69,6 +69,7 @@ of the computer
 
 > **1. Quadcopter Degree of Freedom**
 > >  **- Reference Frame**
+> > 
 > > Set the system axis as shown in the picture.
 > ![Untitled_Artwork](https://github.com/Fzil0n/QuadCopter_simulation/assets/122668877/6a906f51-e03d-4d19-91c0-10a56d1cf977)
 > > 
@@ -108,6 +109,7 @@ F_{z} = k\left(w_{1}^2 + w_{2}^2 + w_{3}^2 + w_{4}^2\right)
 > **2. Quadcopter Degree of Freedom**
 > 
 > > **- Motor mixing algorithm**
+> > 
 > > To control the Quadcopter's rolling pitching and Yawing, it can only be controlled through the speed of the individual motors.
 which can be written out as a relationship as follows
 ```math
@@ -124,6 +126,7 @@ motor 4 = thrust_{cmd} + roll_{cmd} - yaw_{cmd}
 ```
 > > 
 > > **- Angular velocity of base frame**
+> > 
 > > We can find the Angular velocity $\left(\vec{w_{b}}\right)$ of the point CM with respect to Frame 0 from
 ```math
 \vec{w_{b}} = \begin{bmatrix}\dot{\phi} \\ 0 \\ 0 \end{bmatrix} + R_{x}^T \left(\phi\right)\begin{bmatrix} 0 \\ \dot{\theta} \\ 0 \end{bmatrix} - R_{x}^T \left(\phi\right)R_{y}^T \left(\theta\right)\begin{bmatrix} 0 \\ 0 \\ \dot{\psi}\end{bmatrix}
@@ -136,6 +139,7 @@ motor 4 = thrust_{cmd} + roll_{cmd} - yaw_{cmd}
 > **3. Quadcopter Dynamics**
 > 
 > >  **- External force and torque**
+> > 
 > >  From the above, we can write external force and torque in matrix form as follows.
 ```math
 \vec{F}_{ext} = R_{rpy}
@@ -153,6 +157,7 @@ motor 4 = thrust_{cmd} + roll_{cmd} - yaw_{cmd}
 R_{rpy} = R_{z}\left(\psi\right)R_{y}\left(\theta\right)R_{x}\left(\phi\right)
 ```
 > >  **- Equation of Motion (EOM)**
+> > 
 > > How to solve equations to find The equations of motion of the quadcopter are therefore applied by the Euler-Lagrange Method, where the Lagrangian (L) is the difference between the kinetic energy (K.E.) and the gravitational potential energy (P.E.).
 
 ```math
