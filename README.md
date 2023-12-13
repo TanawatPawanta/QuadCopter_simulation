@@ -44,6 +44,7 @@
    
 # Component <a name="component"></a>
 ### Motor Slider
+
 > In motor slider UI have 4 component
 > > 1. The text shows the speed of all 4 motors in RPM units.
 The lowest value is 0 and the highest is 20,000 rads/s
@@ -65,6 +66,7 @@ of the computer
 > The creator has applied it for user interaction through UI and simulation.
 
 ### Dynamic Calculation
+
 > **1. Quadcopter Degree of Freedom**
 > >  **- Reference Frame**
 > > Set the system axis as shown in the picture.
@@ -74,6 +76,7 @@ of the computer
 > > The Quadcopter's Pose can be specified with position (x, y, z) and Orientation via Euler angle (Roll (ϕ), Pitch (θ), Yaw (ψ)) or q=(x,y,z). ,ϕ,θ,ψ) The quadcopter speed can be specified as follows: $\dot{q} = \left(\dot{x}, \dot{y}, \dot{z}, \dot{\phi}, \dot{\theta}, \dot{\psi} \right)$
 > > 
 > >  **- Translation**
+> > 
 > >  For a quadcopter, the force that occurs is only one force in the $Z\left(F_{z}\right)$ axis. which serves to increase-decrease the Altitude of the Quadcopter. The said force is the sum of the force from all 4 propellers (Thrust) which is directly proportional to the Angular velocity squared.
 ```math
 thrust \propto w^2
@@ -89,6 +92,7 @@ F_{z} = k\left(w_{1}^2 + w_{2}^2 + w_{3}^2 + w_{4}^2\right)
 > > Because there is only one force in the Z axis, we want to control the direction in the X and Y axes as well. Therefore, Rolling and Pitching are used to help create the force in the Y axis, respectively.
 
 > >  **- Rotation**
+> > 
 > >  The thing that will allow the quadcopter to be able to roll, pitch, and yaw is from the torque that occurs in each axis.
 ```math
 \tau_{x} = lk\left(w_{4}^2 - w_{2}^2\right)
@@ -102,6 +106,7 @@ F_{z} = k\left(w_{1}^2 + w_{2}^2 + w_{3}^2 + w_{4}^2\right)
 > >  When b is Drag Constant
 
 > **2. Quadcopter Degree of Freedom**
+> 
 > > **- Motor mixing algorithm**
 > > To control the Quadcopter's rolling pitching and Yawing, it can only be controlled through the speed of the individual motors.
 which can be written out as a relationship as follows
@@ -129,6 +134,7 @@ motor 4 = thrust_{cmd} + roll_{cmd} - yaw_{cmd}
 > > When $R_{n}$ is Rotation matrix
 > > 
 > **3. Quadcopter Dynamics**
+> 
 > >  **- External force and torque**
 > >  From the above, we can write external force and torque in matrix form as follows.
 ```math
@@ -164,6 +170,7 @@ L = K.E. - P.E.
 ```
 
 ### 3D Visualization
+
 > The visualization part involves drawing the Quadcopter on the screen and updating its position based on differential values of X, Y, Z, roll, pitch, yaw.
 > 
 > ![messageImage_1702377397219](https://github.com/Fzil0n/QuadCopter_simulation/assets/122668877/99a2c0b9-bafe-4758-93dd-eee1ea889626)
@@ -173,6 +180,7 @@ L = K.E. - P.E.
 > The libraries used for this visualization are Pygame for display creation and OpenGL for graphics rendering.
 > 
 # User Guide <a name="userguide"></a>
+
 > 1. Within the Jupyter Notebook file, there are a total of 3 sections, consisting of:
 > > - Section 1: Importing relevant packages into the project.
 
@@ -194,17 +202,21 @@ L = K.E. - P.E.
 > 3.  When visualization is complete, Program will shut down automatically.
 
 # Demos & Result <a name="demosnresult"></a>
+
 ## Examples
-> - Example 1: falling and spin about z-axis
+
+> **- Example 1:** falling and spin about z-axis
 >   
 https://github.com/Fzil0n/QuadCopter_simulation/assets/122668877/f8c78fa3-a352-4a3c-b3cf-c508be4a07e9
 
-> - Example 2: hover and spin about z-axis
+> **- Example 2:** hover and spin about z-axis
 > 
 https://github.com/Fzil0n/QuadCopter_simulation/assets/122668877/dcd746c1-80fc-45e8-a3b5-ec25d120da76
 
 ### Validation
-> - Animation compare with MATLAB
+
+> **- Animation compare with MATLAB**
+> 
 > > spin about z-axis
 > > 
 https://github.com/Fzil0n/QuadCopter_simulation/assets/122668877/c9a7a609-692d-4733-9779-8c53a8ceec56
@@ -213,11 +225,13 @@ https://github.com/Fzil0n/QuadCopter_simulation/assets/122668877/c9a7a609-692d-4
 > > 
 https://github.com/Fzil0n/QuadCopter_simulation/assets/122668877/8194b8d3-2021-4189-b823-29aa6c514485
 
-> - Dynamic compare with MATLAB
+> **- Dynamic compare with MATLAB**
+> 
 > > Spin about z-axis and hover
 > > ![image5](https://github.com/Fzil0n/QuadCopter_simulation/assets/122668877/289444ca-9cde-4c84-b460-13a33d8b735d)
 
 # Conclusion <a name="conclusion"></a>
+
 > Simulating the motion of a quadcopter using Python can be done using various libraries available in Python, such as NumPy, Matplotlib, and others, to model the dynamics of the quadcopter and visualize the results graphically. Comparing the results to MATLAB may show some differences depending on the simulation methods and parameters used in each system. However, by choosing appropriate parameters and using accurate simulation methods, you can achieve results that closely match those in MATLAB.
 > 
 > To enhance the reliability of your testing, you can experiment with refining and adjusting the parameters of the Python simulation to obtain results that closely align with the MATLAB outcomes. Testing that involves comparing results with MATLAB is a good step to verify the accuracy and reliability of your simulation.
@@ -225,10 +239,13 @@ https://github.com/Fzil0n/QuadCopter_simulation/assets/122668877/8194b8d3-2021-4
 > Keep in mind that since there is no real-world quadcopter for direct comparison, testing can only be done by comparing results within the simulation environments, such as Python and MATLAB.
 
 # Future plan <a name="futureplans"></a>
+
 > - **Improve GUI and visualization.**
 > - **Testing with real quadcopter.**
 > - **Real-time speed adjustment and display of results.**
+> 
 # Reference <a name="reference"></a>
+
 > - [1] Lebedev, A. (2013). Design and Implementation of a 6DOF Control System for an Autonomous Quadrocopter (Master's thesis). Julius Maximilian University of Würzburg, Faculty of Mathematics and Computer Science, Aerospace Information Technology, Chair of Computer Science VIII, Prof. Dr. Sergio Montenegro.
 > - [2] DRONE OMEGA, 2020, What is a Quadcopter Explained Thoroughly [Online], Available: [droneomega.com](https://droneomega.com/what-is-a-quadcopter/) [02/11/23]
 > - [3] Pranav Bhounsule, 2020, Robotics Lec25,26: 3D quadcopter, derivation, simulation, animation (Fall 2020) [Online], Available: [YouTube](https://www.youtube.com/watch?v=4hlq2pf842u) [02/11/23]
