@@ -65,7 +65,29 @@ of the computer
 > The creator has applied it for user interaction through UI and simulation.
 
 ### Dynamic Calculation
-> >
+> 1. Quadcopter Degree of Freedom
+> 2. Quadcopter Degree of Freedom
+> 3. Quadcopter Dynamics
+> >  - External force and torque
+> >  - Equation of Motion (EOM)
+> > >How to solve equations to find The equations of motion of the quadcopter are therefore applied by the Euler-Lagrange Method, where the Lagrangian (L) is the difference between the kinetic energy (K.E.) and the gravitational potential energy (P.E.).
+```math
+\vec{F}_{ext} = R_{rpy}
+\begin{bmatrix} 0 \\ 0 \\ k\left(\sum_{i=1} ^4 w_i^2 \right) \end{bmatrix} - \begin{bmatrix} A_{x}\dot{x} \\ A_{y}\dot{y} \\ A_{z}\dot{z} \end{bmatrix}
+```
+
+```math
+\vec{t}_{ext} = \begin{bmatrix} t_{x} \\ t_{y} \\ t_{z} \end{bmatrix}
+= \begin{bmatrix} t_{\phi} \\ t_{\theta} \\ t_{\phi} \end{bmatrix}
+= \begin{bmatrix} lk\left(w_4^2 - w_2^2\right) \\ lk\left(w_3^2 - w_1^2\right) \\ b\left(w_1^2 + w_2^2 + w_3^2 + w_4^2\right)\end{bmatrix}
+```
+> > > When $A_{n}$ is damper
+> > > 
+```math
+R_{rpy} = R_{z}\left(\psi\right)R_{y}\left(\theta\right)\thetaR_{x}\left(\phi\right)
+```
+> > >
+> 
 ### 3D Visualization
 > The visualization part involves drawing the Quadcopter on the screen and updating its position based on differential values of X, Y, Z, roll, pitch, yaw.
 > 
