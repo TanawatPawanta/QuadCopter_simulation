@@ -216,27 +216,44 @@ L = K.E. - P.E.
 > **- Example 1:** falling and spin about z-axis
 >   
 https://github.com/Fzil0n/QuadCopter_simulation/assets/122668877/f8c78fa3-a352-4a3c-b3cf-c508be4a07e9
+> To simulate rotation around the z-axis and falling along the z-axis, start by adjusting the speed of all four motors to achieve a balanced condition calculated from
+
+```math
+ω = \sqrt{\frac{mg}{4k}}
+```
+
+> From the set parameters, you have obtained ω = 620.61 rad/s. Next, adjust the speed of motors 1 and 3 to decrease to 600 rad/s.
 
 > **- Example 2:** hover and spin about z-axis
 > 
 https://github.com/Fzil0n/QuadCopter_simulation/assets/122668877/dcd746c1-80fc-45e8-a3b5-ec25d120da76
 
+> To simulate rotation around the z-axis and ascending along the z-axis, start by adjusting the speed of all four motors to achieve a balanced condition. Then, decrease the speed of motors 1 and 3 to 645 rad/s.
+
 ### Validation
 
+> For the validation of dynamics, as we do not have a real quadcopter, we can only compare the computed values between Python and MATLAB. This comparison will be divided into two parts: visualization and the values obtained from the calculations.
+>
 > **- Animation compare with MATLAB**
 > 
-> > spin about z-axis
+> > **spin about z-axis**
 > > 
 https://github.com/Fzil0n/QuadCopter_simulation/assets/122668877/c9a7a609-692d-4733-9779-8c53a8ceec56
 
-> > spin about x-axis
+> > In this test, we will compare the rotation around the z-axis using the same set of parameters for both simulations, running for a total of 1 second (100 time steps). From the clips, it can be observed that the rotational motion around the z-axis in both simulations has similar characteristics.
+
+> > **spin about x-axis**
 > > 
 https://github.com/Fzil0n/QuadCopter_simulation/assets/122668877/8194b8d3-2021-4189-b823-29aa6c514485
 
+> > In this test, we will compare the rotation around the x-axis using the same set of parameters for both simulations, running for a total of 1 second (100 time steps). From the clips, it can be observed that the rotational motion around the x-axis in both simulations has similar characteristics.
+
 > **- Dynamic compare with MATLAB**
 > 
-> > Spin about z-axis and hover
+> > **Spin about z-axis and hover**
 > > ![image5](https://github.com/Fzil0n/QuadCopter_simulation/assets/122668877/289444ca-9cde-4c84-b460-13a33d8b735d)
+> >
+> > The obtained values are close, and by examining the results at step 100, it can be seen that the position value from Python is 0.0373, while the value from MATLAB is 0.0367. The discrepancy may arise from rounding differences in the calculations between Python and MATLAB.
 
 # Conclusion <a name="conclusion"></a>
 
