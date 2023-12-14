@@ -186,7 +186,15 @@ L = K.E. - P.E.
 > ![messageImage_1702377463885](https://github.com/Fzil0n/QuadCopter_simulation/assets/122668877/197dc99a-d1ea-4d05-9998-150636515228)
 
 > The libraries used for this visualization are Pygame for display creation and OpenGL for graphics rendering.
-> 
+
+### System Architecture Diagram
+
+Over all diagram
+![systemarch](https://github.com/Fzil0n/QuadCopter_simulation/assets/122668877/cac4b180-5955-4f53-ade0-f6102da04c37)
+
+Diagram in focus part
+![sysdi](https://github.com/Fzil0n/QuadCopter_simulation/assets/122668877/2598af9e-12c7-42e4-91a2-3f700a75f4ff)
+
 # User Guide <a name="userguide"></a>
 
 > 1. Within the Jupyter Notebook file, there are a total of 3 sections, consisting of:
