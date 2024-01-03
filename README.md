@@ -7,7 +7,7 @@
  - [**Demos & Result**](#demosnresult)
  - [**Conclusion**](#conclusion)
  - [**Future plan**](#futureplans)
- - [**Reference**](#reference)
+ - [**References**](#references)
  
 ## Installation <a name="installation"></a>
 
@@ -277,7 +277,7 @@ https://github.com/Fzil0n/QuadCopter_simulation/assets/122668877/8194b8d3-2021-4
 > - **Testing with real quadcopter.**
 > - **Real-time speed adjustment and display of results.**
 > 
-# Reference <a name="reference"></a>
+# References <a name="references"></a>
 
 > - [1] Lebedev, A. (2013). Design and Implementation of a 6DOF Control System for an Autonomous Quadrocopter (Master's thesis). Julius Maximilian University of Würzburg, Faculty of Mathematics and Computer Science, Aerospace Information Technology, Chair of Computer Science VIII, Prof. Dr. Sergio Montenegro.
 > - [2] DRONE OMEGA, 2020, What is a Quadcopter Explained Thoroughly [Online], Available: [droneomega.com](https://droneomega.com/what-is-a-quadcopter/) [02/11/23]
