@@ -106,7 +106,7 @@ F_{z} = k\left(w_{1}^2 + w_{2}^2 + w_{3}^2 + w_{4}^2\right)
 ```
 > >  When b is Drag Constant
 
-> **2. Quadcopter Degree of Freedom**
+> **2. Motors control algorithm**
 > 
 > > **- Motor mixing algorithm**
 > > 
