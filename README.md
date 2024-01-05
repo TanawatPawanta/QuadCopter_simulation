@@ -1,5 +1,5 @@
 # Quadcopter Simulation
-> This project aims to visualize a Quadcopter's motion (roll, pitch, yaw, and hover) in 3D space by adjusting the speed of four motors in Python. The project consists of three main parts: motor speed adjustment window, dynamic calculation, and 3D visualization. Special thanks to [this MATLAB script](https://youtu.be/4hlQ2pf842U?si=a1AfHnj8r89j6BRX) for finding the Quadcopter's equation of motion.
+> This project aims to visualize a Quadcopter's motion (roll, pitch, yaw, and hover) in 3D space by adjusting the speed of four motors in Python. The project consists of three main parts: motor speed adjustment window, dynamic calculation, and 3D visualization. 
 # Table of Contents
  - [**Installation**](#installation)
  - [**Component**](#component)
